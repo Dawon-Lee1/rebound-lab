@@ -1,0 +1,38 @@
+---
+import type { Player } from "../data/players";
+
+type Col = { label: string; value: (p: Player) => string | number };
+interface Props {
+  caption: string;
+  rows: Player[];
+  rank: (p: Player) => number | null;
+  columns: Col[];
+}
+const { caption, rows, rank, columns } = Astro.props;
+---
+
+<table>
+  <caption>{caption}</caption>
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Player</th>
+      {columns.map((c) => <th scope="col">{c.label}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      rows.map((p) => (
+        <tr>
+          <td>{rank(p)}</td>
+          <th scope="row">
+            <a href={`/player/${p.player_id}`}>{p.name}</a>
+          </th>
+          {columns.map((c) => (
+            <td>{c.value(p)}</td>
+          ))}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

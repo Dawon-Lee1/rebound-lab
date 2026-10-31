@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Rebound Lab</title>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <a href="/">Rebound Lab</a> · <a href="/methodology">Methodology</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>Data: Baseball Savant</p>
+      <p>
+        Rebound Lab is an independent project and is not affiliated with, endorsed by, or sponsored by MLB, MLBAM, or
+        any team.
+      </p>
+      <nav aria-label="Footer">
+        <a href="/methodology">Methodology</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·
+        <a href="/cookies">Cookies</a>
+      </nav>
+    </footer>
+  </body>
+</html>

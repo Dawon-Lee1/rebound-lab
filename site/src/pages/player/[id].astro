@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import { f3, meta, players, type Player } from "../../data/players";
+
+export function getStaticPaths() {
+  return players.map((p) => ({ params: { id: String(p.player_id) }, props: { p } }));
+}
+const { p } = Astro.props as { p: Player };
+const rows: [string, string | number][] = [
+  ["PA", p.pa],
+  ["wOBA", f3(p.woba)],
+  ["xwOBA", f3(p.xwoba)],
+  ["BA", f3(p.ba)],
+  ["xBA", f3(p.xba)],
+  ["SLG", f3(p.slg)],
+  ["xSLG", f3(p.xslg)],
+  [`Proj ${meta.data_season + 1} wOBA`, f3(p.proj_woba_2027)],
+  ["Rebound Score", f3(p.rebound_score)],
+  ["Luck", f3(p.luck)],
+  ["Regression", f3(p.regression)],
+  ["Buy-Low rank", p.rank_luck],
+  ["Rebound rank", p.rank_rebound ?? `Not ranked (under ${meta.rebound_tab_min_pa} PA)`],
+];
+---
+
+<Base title={p.name}>
+  <h1>{p.name}</h1>
+  <table>
+    <caption>{meta.data_season} season totals and {meta.data_season + 1} projection</caption>
+    <tbody>
+      {
+        rows.map(([k, v]) => (
+          <tr>
+            <th scope="row">{k}</th>
+            <td>{v}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <p><a href="/">Back to the board</a></p>
+</Base>

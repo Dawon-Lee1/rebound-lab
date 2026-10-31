@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+import PlayerTable from "../components/PlayerTable.astro";
+import { f3, meta, players } from "../data/players";
+
+const buyLow = [...players].sort((a, b) => a.rank_luck - b.rank_luck);
+const rebound = players
+  .filter((p) => p.in_rebound_tab)
+  .sort((a, b) => (a.rank_rebound ?? 0) - (b.rank_rebound ?? 0));
+---
+
+<Base title={`${meta.data_season + 1} Hitter Buy-Low Board`}>
+  <h1>{meta.data_season + 1} Hitter Buy-Low Board</h1>
+  <p>Based on the {meta.data_season} season, {meta.players.length} hitters with {meta.min_pa_show}+ PA. Method {meta.method_version}.</p>
+
+  <div role="tablist" aria-label="Rankings" hidden>
+    <button role="tab" id="tab-luck" aria-controls="panel-luck" aria-selected="true">Buy-Low</button>
+    <button role="tab" id="tab-rebound" aria-controls="panel-rebound" aria-selected="false" tabindex="-1">Rebound</button>
+  </div>
+
+  <section role="tabpanel" id="panel-luck" aria-labelledby="tab-luck" tabindex="0">
+    <p>Hitters whose expected stats (xwOBA) ran ahead of their results: the unluckiest first.</p>
+    <PlayerTable
+      caption="Buy-Low: sorted by Luck"
+      rows={buyLow}
+      rank={(p) => p.rank_luck}
+      columns={[
+        { label: "PA", value: (p) => p.pa },
+        { label: "wOBA", value: (p) => f3(p.woba) },
+        { label: "xwOBA", value: (p) => f3(p.xwoba) },
+        { label: "Luck", value: (p) => f3(p.luck) },
+        { label: "Rebound", value: (p) => f3(p.rebound_score) },
+      ]}
+    />
+  </section>
+
+  <section role="tabpanel" id="panel-rebound" aria-labelledby="tab-rebound" tabindex="0">
+    <p>Players with {meta.rebound_tab_min_pa}+ PA, sorted by projected change in wOBA (Luck + Regression).</p>
+    <PlayerTable
+      caption="Rebound: sorted by Rebound Score"
+      rows={rebound}
+      rank={(p) => p.rank_rebound}
+      columns={[
+        { label: "PA", value: (p) => p.pa },
+        { label: "wOBA", value: (p) => f3(p.woba) },
+        { label: `Proj ${meta.data_season + 1} wOBA`, value: (p) => f3(p.proj_woba_2027) },
+        { label: "Rebound", value: (p) => f3(p.rebound_score) },
+        { label: "Luck", value: (p) => f3(p.luck) },
+        { label: "Regression", value: (p) => f3(p.regression) },
+      ]}
+    />
+  </section>
+</Base>
+
+<script>
+  // Without JS the tablist stays hidden and both panels show. With JS: ARIA tabs, arrows/Home/End switch.
+  document.querySelector<HTMLElement>('[role="tablist"]')!.hidden = false;
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const select = (t: HTMLButtonElement) => {
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute("aria-selected", String(on));
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute("aria-controls")!)!.hidden = !on;
+    }
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(t));
+    t.addEventListener("keydown", (e) => {
+      const last = tabs.length - 1;
+      const j = (<Record<string, number>>{ ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i + last) % tabs.length, Home: 0, End: last })[e.key];
+      if (j === undefined) return;
+      e.preventDefault();
+      const n = tabs[j];
+      select(n);
+      n.focus();
+    });
+  });
+  select(tabs[0]);
+</script>

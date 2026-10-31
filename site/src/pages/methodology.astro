@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import { meta } from "../data/players";
+---
+
+<Base title="Methodology">
+  <h1>Methodology</h1>
+  <p>
+    The {meta.data_season + 1} projection blends each hitter's expected wOBA (xwOBA) with actual wOBA, then pulls the
+    result toward the league average. Hitters with fewer plate appearances are pulled harder. Current settings:
+    {meta.method_version}.
+  </p>
+  <p>Rebound Score = projected wOBA − actual wOBA, split into two parts:</p>
+  <ul>
+    <li>
+      <strong>Luck</strong>: the share of the gap between expected and actual results (xwOBA − wOBA) that the projection
+      keeps. It is scaled down by the xwOBA weight and by sample size, so it is smaller than the raw gap.
+    </li>
+    <li><strong>Regression</strong>: the pull toward the league average ({meta.league_woba.toFixed(3)} wOBA).</li>
+  </ul>
+  <p>
+    The Buy-Low tab ranks by Luck. The Rebound tab ranks by the full Rebound Score and only includes hitters with
+    {meta.rebound_tab_min_pa}+ PA. Ranks use unrounded values, so two players showing the same three-decimal number can
+    hold different ranks.
+  </p>
+</Base>
