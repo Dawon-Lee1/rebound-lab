@@ -19,7 +19,8 @@ import { meta } from "../data/players";
     <li><strong>Regression</strong>: the pull toward the league average ({meta.league_woba.toFixed(3)} wOBA).</li>
   </ul>
   <p>
-    The Buy-Low tab ranks by Luck. The Rebound tab ranks by the full Rebound Score and only includes hitters with
+    The Buy-Low tab lists hitters with positive Luck, largest first. The Sell-High tab lists hitters with negative Luck,
+    most negative first. The Rebound tab ranks by the full Rebound Score and only includes hitters with
     {meta.rebound_tab_min_pa}+ PA. Ranks use unrounded values, so two players showing the same three-decimal number can
     hold different ranks.
   </p>

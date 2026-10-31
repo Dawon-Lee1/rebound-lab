@@ -1,5 +1,5 @@
 ---
-import type { Player } from "../data/players";
+import { teamLabel, type Player } from "../data/players";
 
 type Col = { label: string; value: (p: Player) => string | number };
 interface Props {
@@ -27,6 +27,7 @@ const { caption, rows, rank, columns } = Astro.props;
           <td>{rank(p)}</td>
           <th scope="row">
             <a href={`/player/${p.player_id}`}>{p.name}</a>
+            {teamLabel(p) && <span class="team"> {teamLabel(p)}</span>}
           </th>
           {columns.map((c) => (
             <td>{c.value(p)}</td>

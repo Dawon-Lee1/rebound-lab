@@ -3,7 +3,8 @@ import Base from "../layouts/Base.astro";
 import PlayerTable from "../components/PlayerTable.astro";
 import { f3, meta, players } from "../data/players";
 
-const buyLow = [...players].sort((a, b) => a.rank_luck - b.rank_luck);
+const buyLow = players.filter((p) => p.in_buylow_tab).sort((a, b) => (a.rank_luck ?? 0) - (b.rank_luck ?? 0));
+const sellHigh = players.filter((p) => p.in_sell_tab).sort((a, b) => (a.rank_sell ?? 0) - (b.rank_sell ?? 0));
 const rebound = players
   .filter((p) => p.in_rebound_tab)
   .sort((a, b) => (a.rank_rebound ?? 0) - (b.rank_rebound ?? 0));
@@ -15,6 +16,7 @@ const rebound = players
 
   <div role="tablist" aria-label="Rankings" hidden>
     <button role="tab" id="tab-luck" aria-controls="panel-luck" aria-selected="true">Buy-Low</button>
+    <button role="tab" id="tab-sell" aria-controls="panel-sell" aria-selected="false" tabindex="-1">Sell-High</button>
     <button role="tab" id="tab-rebound" aria-controls="panel-rebound" aria-selected="false" tabindex="-1">Rebound</button>
   </div>
 
@@ -24,6 +26,22 @@ const rebound = players
       caption="Buy-Low: sorted by Luck"
       rows={buyLow}
       rank={(p) => p.rank_luck}
+      columns={[
+        { label: "PA", value: (p) => p.pa },
+        { label: "wOBA", value: (p) => f3(p.woba) },
+        { label: "xwOBA", value: (p) => f3(p.xwoba) },
+        { label: "Luck", value: (p) => f3(p.luck) },
+        { label: "Rebound", value: (p) => f3(p.rebound_score) },
+      ]}
+    />
+  </section>
+
+  <section role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0">
+    <p>Hitters whose results ran ahead of their expected stats (xwOBA): the luckiest first.</p>
+    <PlayerTable
+      caption="Sell-High: sorted by Luck, most negative first"
+      rows={sellHigh}
+      rank={(p) => p.rank_sell}
       columns={[
         { label: "PA", value: (p) => p.pa },
         { label: "wOBA", value: (p) => f3(p.woba) },

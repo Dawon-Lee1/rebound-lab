@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { f3, meta, players, type Player } from "../../data/players";
+import { f3, meta, players, teamLabel, type Player } from "../../data/players";
 
 export function getStaticPaths() {
   return players.map((p) => ({ params: { id: String(p.player_id) }, props: { p } }));
@@ -18,13 +18,14 @@ const rows: [string, string | number][] = [
   ["Rebound Score", f3(p.rebound_score)],
   ["Luck", f3(p.luck)],
   ["Regression", f3(p.regression)],
-  ["Buy-Low rank", p.rank_luck],
+  ["Buy-Low rank", p.rank_luck ?? "Not in Buy-Low list (Luck not positive)"],
+  ["Sell-High rank", p.rank_sell ?? "Not in Sell-High list (Luck not negative)"],
   ["Rebound rank", p.rank_rebound ?? `Not ranked (under ${meta.rebound_tab_min_pa} PA)`],
 ];
 ---
 
 <Base title={p.name}>
-  <h1>{p.name}</h1>
+  <h1>{p.name}{teamLabel(p) && ` (${teamLabel(p)})`}</h1>
   <table>
     <caption>{meta.data_season} season totals and {meta.data_season + 1} projection</caption>
     <tbody>
