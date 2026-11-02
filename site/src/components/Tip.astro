@@ -7,8 +7,8 @@ interface Props {
 const { id, label } = Astro.props;
 ---
 
-<button type="button" class="tip" popovertarget={id} aria-label={`About ${label}`}>?</button>
-<div popover id={id} class="pop">
+<button type="button" class="tip" popovertarget={id} aria-label={`About ${label}`} style={`anchor-name: --${id}`}>?</button>
+<div popover id={id} class="pop" style={`position-anchor: --${id}`}>
   <p><strong>{label}</strong></p>
   <p><slot /></p>
 </div>
@@ -47,5 +47,14 @@ const { id, label } = Astro.props;
   }
   .pop p {
     margin: 0 0 10px;
+  }
+  /* Open next to its "?" button where anchor positioning is supported; elsewhere the popover stays centered. */
+  @supports (anchor-name: --a) {
+    .pop {
+      inset: auto;
+      margin: 6px 0;
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-inline, flip-block, flip-block flip-inline;
+    }
   }
 </style>

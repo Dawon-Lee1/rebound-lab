@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { bare, barPct, explain, metaLine, ownShare, signed, tipChange, tipLuck, tipReg } from "./explain.ts";
+import { bare, barPct, explain, metaLine, ownShare, playerDescription, signed, tipChange, tipLuck, tipReg } from "./explain.ts";
 
 test("signed", () => {
   assert.equal(signed(0.034), "+.034");
@@ -78,4 +78,13 @@ test("tips", () => {
 test("ownShare", () => {
   assert.equal(ownShare(300, 300), 0.5);
   assert.equal(ownShare(0, 300), 0);
+});
+
+test("playerDescription", () => {
+  const p = { name: "Ke'Bryan Hayes", woba: 0.191, xwoba: 0.287, rebound_score: 0.103 };
+  const s = playerDescription(p, 2026);
+  assert.match(s, /\.191 wOBA in 2026 on a \.287 xwOBA/);
+  assert.match(s, /\+\.103 wOBA change for 2027/);
+  assert.ok(s.length <= 155);
+  assert.ok(playerDescription({ ...p, name: "X".repeat(60) }, 2026).length <= 155);
 });

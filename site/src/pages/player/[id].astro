@@ -3,9 +3,9 @@ import Base from "../../layouts/Base.astro";
 import Bar from "../../components/Bar.astro";
 import Split from "../../components/Split.astro";
 import RiskIcon from "../../components/RiskIcon.astro";
-import { meta, players, scale, type Player } from "../../data/players";
+import { meta, players, scale, teamLabel, type Player } from "../../data/players";
 import { about } from "../../data/glossary";
-import { bare, explain, metaLine, signed } from "../../lib/explain";
+import { bare, explain, metaLine, playerDescription, signed } from "../../lib/explain";
 
 export function getStaticPaths() {
   return players.map((p) => ({ params: { id: String(p.player_id) }, props: { p } }));
@@ -32,9 +32,12 @@ const rows: [string, string | number][] = [
   ["Regression", signed(p.regression)],
 ];
 const line = metaLine(p);
+// Two hitters can share a name (e.g. Max Muncy); the team keeps their page titles unique.
+const sameName = players.filter((x) => x.name === p.name).length > 1;
+const titleName = sameName ? `${p.name} (${teamLabel(p) || `ID ${p.player_id}`})` : p.name;
 ---
 
-<Base title={p.name} description={`${p.name}: ${season} wOBA vs xwOBA, Luck and Regression, and the projected ${season + 1} change.`}>
+<Base title={`${titleName} ${season + 1} Fantasy Outlook: Buy-Low or Sell-High?`} description={playerDescription(p, season)}>
   <p class="back"><a href="/">Back to the board</a></p>
   <h1>{p.name}</h1>
   {line && <p class="meta">{line}</p>}

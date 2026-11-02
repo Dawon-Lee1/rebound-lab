@@ -59,12 +59,20 @@ const counts = [
   [tabs[0].rows.length, "Buy-Low: Luck above zero"],
   [tabs[1].rows.length, "Sell-High: Luck below zero"],
 ] as const;
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Rebound Lab",
+  url: new URL("/", Astro.site).href,
+  description: `Which ${season} MLB hitters were unlucky, and who got lucky? A free buy-low and sell-high board for ${season + 1} fantasy baseball drafts.`,
+};
 ---
 
 <Base
   title={`${season + 1} Hitter Buy-Low Board`}
   description={`Which ${season} MLB hitters were unlucky, and who got lucky? Expected stats vs results for ${players.length} hitters, for ${season + 1} fantasy drafts.`}
 >
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(website)} />
   <section class="hero" aria-labelledby="hero-h">
     <h1 id="hero-h">Which {season} hitters were unlucky — and who just got lucky?</h1>
     <p class="lede">

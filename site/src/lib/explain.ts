@@ -13,6 +13,14 @@ export const signed = (x: number) => {
 /** Bar length as % of the shared scale, capped at 100. */
 export const barPct = (x: number, max: number) => (max > 0 ? Math.min(100, (Math.abs(x) / max) * 100) : 0);
 
+type Desc = { name: string; woba: number; xwoba: number; rebound_score: number };
+/** Player page meta description, kept within 155 characters (long names get the short second sentence). */
+export function playerDescription(p: Desc, season: number): string {
+  const first = `${p.name} posted a ${bare(p.woba)} wOBA in ${season} on a ${bare(p.xwoba)} xwOBA.`;
+  const long = `${first} Rebound Lab projects a ${signed(p.rebound_score)} wOBA change for ${season + 1}.`;
+  return long.length <= 155 ? long : `${first} Proj. ${season + 1} change: ${signed(p.rebound_score)}.`;
+}
+
 /** Share of the projection that comes from the player's own PA; the rest is k PA of league-average padding. */
 export const ownShare = (pa: number, k: number) => pa / (pa + k);
 
