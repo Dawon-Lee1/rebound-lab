@@ -1,12 +1,57 @@
 ---
-import Base from "../layouts/Base.astro";
+import Policy from "../components/Policy.astro";
 ---
 
-<Base title="Terms">
-  <h1>Terms</h1>
+<Policy title="Terms of Use" description="The terms for using Rebound Lab, a free season-long fantasy baseball tool.">
+  <h2>What Rebound Lab is</h2>
   <p>
-    Rebound Lab is provided for informational and entertainment purposes for season-long fantasy baseball. It is not
-    betting advice. Projections can be wrong, and the site is provided "as is" without warranty.
+    Rebound Lab is a free tool for season-long fantasy baseball, provided for information and entertainment. It is not
+    betting or gambling advice, and it should not be used as such.
   </p>
-  <p>Statistics come from Baseball Savant and remain subject to its terms.</p>
-</Base>
+
+  <h2>No guarantees</h2>
+  <p>
+    Projections are estimates and can be wrong. The site is provided "as is", without warranties of any kind. To the
+    extent the law allows, we are not liable for any loss or damage that comes from using the site or relying on its
+    numbers.
+  </p>
+
+  <h2>Data</h2>
+  <p>
+    Statistics come from <a href="https://baseballsavant.mlb.com/">Baseball Savant</a>, operated by MLB Advanced Media.
+    Rights to that data, and the terms for using it, belong to its owners. See the
+    <a href="https://www.mlb.com/official-information/terms-of-use">MLB.com Terms of Use</a>.
+  </p>
+
+  <h2>Trademarks</h2>
+  <p>
+    MLB, team names and other marks belong to their owners. Rebound Lab is not affiliated with, endorsed by or sponsored by
+    MLB, MLB Advanced Media or any team.
+  </p>
+
+  <h2>Our code</h2>
+  <p>
+    The site's source code is released under the
+    <a href="https://github.com/Dawon-Lee1/rebound-lab/blob/main/LICENSE">MIT License</a>. The license covers the code only,
+    not the baseball data shown on the site.
+  </p>
+
+  <h2>Automated access</h2>
+  <p>Please do not scrape the site in bulk with automated tools. It is a small project on free hosting.</p>
+
+  <h2>Governing law</h2>
+  <p>These terms are governed by the laws of the Republic of Korea.</p>
+
+  <h2>Changes</h2>
+  <p>If these terms change, we will update them on this page and change the effective date above.</p>
+
+  <Fragment slot="ko">
+    <p>Rebound Lab은 정보·오락 목적의 무료 시즌 단위 판타지 베이스볼 도구이며, 베팅·도박 조언이 아닙니다.</p>
+    <p>예측은 틀릴 수 있고, 사이트는 "있는 그대로" 제공되며 법이 허용하는 범위에서 책임을 지지 않습니다.</p>
+    <p>
+      통계 데이터는 Baseball Savant(MLB Advanced Media)에서 오며 권리는 원 소유자에게 있습니다. MLB·구단명 등 상표는 각 소유자의
+      것이고 제휴·후원 관계가 없습니다.
+    </p>
+    <p>사이트 코드는 MIT 라이선스(데이터 제외)이며, 대량 자동 수집은 삼가 주세요. 준거법은 대한민국 법입니다.</p>
+  </Fragment>
+</Policy>

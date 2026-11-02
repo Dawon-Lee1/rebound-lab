@@ -1,0 +1,39 @@
+---
+// Common frame for the three policy pages: effective date, operator line, body, Korean summary, contact line.
+import Base from "../layouts/Base.astro";
+import { contactEmail, effective, operator } from "../data/policy";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <article class="policy">
+    <h1>{title}</h1>
+    <p class="muted">Effective: {effective}</p>
+    <p>{operator}</p>
+    <slot />
+    <section lang="ko" aria-labelledby="ko-summary">
+      <h2 id="ko-summary">한국어 요약</h2>
+      <slot name="ko" />
+    </section>
+    <p class="contact">Questions: <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+  </article>
+</Base>
+
+<style>
+  .policy {
+    max-width: 68ch;
+  }
+  .policy :global(h2) {
+    margin-top: 36px;
+  }
+  .contact {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+</style>

@@ -4,6 +4,7 @@ import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-600.css";
 import "@fontsource/fragment-mono/latin-400.css";
 import "../styles/global.css";
+import { contactEmail } from "../data/policy";
 
 interface Props {
   title: string;
@@ -53,6 +54,7 @@ const nav = [
           <a href="/privacy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/cookies">Cookies</a>
+          <a href={`mailto:${contactEmail}`}>Contact</a>
         </nav>
       </div>
     </footer>
