@@ -96,7 +96,7 @@ const counts = [
     </dl>
   </details>
 
-  <div role="tablist" aria-label="Rankings" class="tabs" hidden>
+  <div role="tablist" aria-label="Rankings" class="tabs">
     {
       tabs.map((t, i) => (
         <button role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={String(i === 0)} tabindex={i ? -1 : 0}>
@@ -185,7 +185,11 @@ const counts = [
     border-bottom: 2px solid var(--ink);
     margin-bottom: 20px;
   }
-  .tabs[hidden] {
+  /* No JS: no tabs, all panels show. With JS (class set in <head> before first paint) only the first panel shows until the script takes over */
+  :global(html:not(.js)) .tabs {
+    display: none;
+  }
+  :global(.js:not(.tabs-ready)) .panel + .panel {
     display: none;
   }
   .tabs button {
@@ -232,8 +236,6 @@ const counts = [
 
 <script>
   // Without JS the tablist stays hidden and all panels show. With JS: ARIA tabs, arrows/Home/End switch.
-  document.documentElement.classList.add("js");
-  document.querySelector<HTMLElement>('[role="tablist"]')!.hidden = false;
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
   const select = (t: HTMLButtonElement) => {
     for (const x of tabs) {
@@ -256,6 +258,7 @@ const counts = [
     });
   });
   select(tabs[0]);
+  document.documentElement.classList.add("tabs-ready");
 
   // Links to the glossary open it; a closed <details> would otherwise scroll into view still collapsed.
   const glossary = document.getElementById("glossary") as HTMLDetailsElement;
@@ -267,7 +270,7 @@ const counts = [
       const end = Number(el.dataset.count);
       const t0 = performance.now();
       const step = (t: number) => {
-        const k = Math.min(1, (t - t0) / 600);
+        const k = Math.max(0, Math.min(1, (t - t0) / 600)); // rAF time can be a bit before t0
         el.textContent = String(Math.round(end * (1 - (1 - k) ** 3)));
         if (k < 1) requestAnimationFrame(step);
       };

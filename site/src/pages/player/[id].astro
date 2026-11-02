@@ -56,9 +56,10 @@ const line = metaLine(p);
           <strong id="risk-h">
             <RiskIcon label={false} /> Playing-time risk.
           </strong>{" "}
-          {p.name} had {p.pa} PA, and much of the projected change is regression toward the league average. Hitters with
-          this profile lost regular playing time far more often the next season, so the projection may not get the chance
-          to play out.
+          {p.name} had {p.pa} PA and his results sat well below the league average, so a large share of his projection
+          depends on regression toward the average. In our 2024–2026 data, hitters under {meta.risk_max_pa} PA with this
+          profile lost regular playing time more often the next season than other hitters. This is a pattern from past
+          seasons, not a prediction about {p.name}.
         </p>
       </aside>
     )

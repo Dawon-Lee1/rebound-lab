@@ -25,6 +25,7 @@ const nav = [
     <title>{title} | Rebound Lab</title>
     {description && <meta name="description" content={description} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add("js");</script>
     <slot name="head" />
   </head>
   <body>

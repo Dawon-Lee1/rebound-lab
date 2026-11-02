@@ -21,7 +21,6 @@ sys.stdout.reconfigure(encoding="utf-8")
 WS = np.round(np.arange(0, 1.01, 0.1), 1)  # 04와 같은 격자
 KS = (0, 50, 100, 200, 300, 500, 800)
 MIN_GAIN = 0.02
-RISK_MAX_PA, RISK_MIN_REG = 350, 0.010  # 05_build_json.py와 같은 값. 결정기록 2026-11-01
 
 
 def pair_all(year_from, year_to):
@@ -108,12 +107,12 @@ if __name__ == "__main__":
     print("주의: 이 검증셋은 선택에 쓰였으므로 여기 RMSE를 사이트 성능 수치로 쓰지 않는다")
 
     print("\n=== (c) 출전 위험: 올해 200타석+ 선수의 다음 해 탈락(100타석 미만) 비율 ===")
-    print(f"제안 기준: PA < {RISK_MAX_PA} 그리고 regression >= {RISK_MIN_REG} (regression은 3자리 반올림값)")
+    print(f"제안 기준: PA < {model.RISK_MAX_PA} 그리고 regression >= {model.RISK_MIN_REG} (regression은 3자리 반올림값)")
     print("주의: 기준값을 이 두 기간에서 골랐으므로 표본 내 결과. 화면에 비율 숫자를 쓰지 않는다\n")
     for (y0, y1), (m, a, b) in pairs.items():
         s = m[m["pa"] >= model.MIN_PA_SHOW].assign(drop=lambda x: ~x["kept"])
         s["reg"] = np.round(model.regression(s, k0, model.league_woba(a)), 3)
-        flag = (s["pa"] < RISK_MAX_PA) & (s["reg"] >= RISK_MIN_REG)
+        flag = (s["pa"] < model.RISK_MAX_PA) & (s["reg"] >= model.RISK_MIN_REG)
         print(f"[{y0}→{y1}] {len(s)}명, 전체 탈락률 {s['drop'].mean():.3f}")
         for name, col, bins in (("PA", "pa", [200, 300, 400, 500, 10_000]), ("regression", "reg", [-1, 0, 0.01, 0.02, 1])):
             g = s.groupby(pd.cut(s[col], bins, right=False), observed=True)["drop"].agg(["size", "mean"])

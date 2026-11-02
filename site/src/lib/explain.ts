@@ -13,19 +13,20 @@ export const signed = (x: number) => {
 /** Bar length as % of the shared scale, capped at 100. */
 export const barPct = (x: number, max: number) => (max > 0 ? Math.min(100, (Math.abs(x) / max) * 100) : 0);
 
-type Meta = { team: string | null; team_status: string; age: number | null };
-/** "CIN, age 30". Unknown team (API miss) is left out rather than shown as blank. */
-export const metaLine = (p: Meta) => {
-  const team = p.team_status === "fa" ? "FA" : p.team_status === "active" ? p.team : null;
-  return [team, p.age != null ? `age ${p.age}` : null].filter(Boolean).join(", ");
-};
+type Team = { team: string | null; team_status: string };
+/** "CIN" / "FA" / "" — unknown team (API miss) is an empty string so it is not shown. */
+export const teamLabel = (p: Team) => (p.team_status === "fa" ? "FA" : (p.team ?? ""));
+
+/** "CIN, age 30". */
+export const metaLine = (p: Team & { age: number | null }) =>
+  [teamLabel(p), p.age != null ? `age ${p.age}` : null].filter(Boolean).join(", ");
 
 type Line = { woba: number; xwoba: number; luck: number; regression: number; rebound_score: number; proj_woba_2027: number };
 const REG = "regression toward the league average";
 
 export function explain(p: Line, lg: number): string {
-  const L = Number(signed(p.luck).replace("−", "-")) || 0; // compare on displayed values
-  const R = Number(signed(p.regression).replace("−", "-")) || 0;
+  const L = p.luck; // already rounded to 3 decimals by 05_build_json.py, so this matches the screen
+  const R = p.regression;
   const C = signed(p.rebound_score);
 
   const first =

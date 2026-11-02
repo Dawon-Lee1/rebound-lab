@@ -21,7 +21,6 @@ OUT = Path(__file__).resolve().parent.parent / "site" / "src" / "data" / "player
 RAW = {"pa": "pa", "woba": "woba", "xwoba": "est_woba", "ba": "ba", "xba": "est_ba", "slg": "slg", "xslg": "est_slg"}
 TABS = {"luck": "luck_raw", "sell": "luck_raw", "rebound": "rebound_raw"}  # 탭 이름 → 정렬 열(반올림 전 값). rank_<탭>으로 저장
 REBOUND_TAB_MIN_PA = 300  # 백업 포수 쏠림 방지. 결정기록 2026-10-31
-RISK_MAX_PA, RISK_MIN_REG = 350, 0.010  # 출전 위험: 다음 해 탈락률 근거는 06 (c). 결정기록 2026-11-01
 AGE_DATE = date(2027, 4, 1)  # 2027 개막 무렵 기준 나이
 MLB_API = "https://statsapi.mlb.com/api/v1"
 RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"  # API 원본, .gitignore 대상
@@ -103,8 +102,7 @@ if __name__ == "__main__":
     d = d[d["pa"] >= model.MIN_PA_SHOW].sort_values("luck_raw", ascending=False)
     d["in_buylow_tab"], d["in_sell_tab"] = d["luck"] > 0, d["luck"] < 0  # 탭은 화면 표시값 부호, 순위는 반올림 전 값
     d["in_rebound_tab"] = d["pa"] >= REBOUND_TAB_MIN_PA
-    d["playing_time_risk"] = (d["pa"] < RISK_MAX_PA) & (d["regression"] >= RISK_MIN_REG)  # 화면 표시값(3자리) 기준
-    assert d.loc[d["playing_time_risk"], "pa"].max() < RISK_MAX_PA and d.loc[d["playing_time_risk"], "regression"].min() >= RISK_MIN_REG
+    d["playing_time_risk"] = (d["pa"] < model.RISK_MAX_PA) & (d["regression"] >= model.RISK_MIN_REG)  # 화면 표시값(3자리) 기준
     d["rank_luck"] = d["luck_raw"].where(d["in_buylow_tab"]).rank(method="min", ascending=False)
     d["rank_sell"] = d["luck_raw"].where(d["in_sell_tab"]).rank(method="min", ascending=True)
     d["rank_rebound"] = d["rebound_raw"].where(d["in_rebound_tab"]).rank(method="min", ascending=False)
@@ -137,8 +135,8 @@ if __name__ == "__main__":
         "tabs": list(TABS),
         "min_pa_show": model.MIN_PA_SHOW,
         "rebound_tab_min_pa": REBOUND_TAB_MIN_PA,
-        "risk_max_pa": RISK_MAX_PA,
-        "risk_min_regression": RISK_MIN_REG,
+        "risk_max_pa": model.RISK_MAX_PA,
+        "risk_min_regression": model.RISK_MIN_REG,
         "players": players,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

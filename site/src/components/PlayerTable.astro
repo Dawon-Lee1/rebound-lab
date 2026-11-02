@@ -28,7 +28,7 @@ const show = (c: Col, p: Player) => (c.kind === "int" ? c.value(p) : c.kind === 
         <th scope="col" class="who">Player</th>
         {
           columns.map((c) => (
-            <th scope="col" class:list={["n", { opt: !c.core }]}>
+            <th scope="col" class:list={["n", { opt: !c.core }]} aria-label={about[c.key][0]}>
               {about[c.key][0]}
               <Tip id={`${id}-${c.key}`} label={about[c.key][0]}>{about[c.key][1]}</Tip>
             </th>
@@ -58,8 +58,8 @@ const show = (c: Col, p: Player) => (c.kind === "int" ? c.value(p) : c.kind === 
   </table>
 </div>
 <p class="legend muted">
-  <RiskIcon label={false} /> Playing-time risk: under {meta.risk_max_pa} PA, with much of the projected change coming
-  from regression. Hitters like this often lose playing time the next year. See the player page.
+  <RiskIcon label={false} /> Playing-time risk: under {meta.risk_max_pa} PA with results well below league average.
+  Hitters like this lost regular playing time more often in past seasons.
 </p>
 
 <style>
