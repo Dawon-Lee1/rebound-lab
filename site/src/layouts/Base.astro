@@ -1,8 +1,20 @@
 ---
+import "@fontsource/fraunces/latin-600.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/fragment-mono/latin-400.css";
+import "../styles/global.css";
+
 interface Props {
   title: string;
+  description?: string;
 }
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const nav = [
+  ["/", "Board"],
+  ["/methodology", "Methodology"],
+];
 ---
 
 <!doctype html>
@@ -11,26 +23,79 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} | Rebound Lab</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <header>
-      <nav aria-label="Main">
-        <a href="/">Rebound Lab</a> · <a href="/methodology">Methodology</a>
-      </nav>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-head">
+      <div class="wrap bar">
+        <a class="logo" href="/">Rebound Lab</a>
+        <nav aria-label="Main">
+          {nav.map(([href, text]) => <a href={href} aria-current={path === href ? "page" : undefined}>{text}</a>)}
+        </nav>
+      </div>
     </header>
-    <main>
+    <main id="main" class="wrap">
       <slot />
     </main>
-    <footer>
-      <p>Data: Baseball Savant</p>
-      <p>
-        Rebound Lab is an independent project and is not affiliated with, endorsed by, or sponsored by MLB, MLBAM, or
-        any team.
-      </p>
-      <nav aria-label="Footer">
-        <a href="/methodology">Methodology</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·
-        <a href="/cookies">Cookies</a>
-      </nav>
+    <footer class="site-foot">
+      <div class="wrap">
+        <p><strong>Data: Baseball Savant</strong></p>
+        <p class="muted">
+          Rebound Lab is an independent project and is not affiliated with, endorsed by, or sponsored by MLB, MLBAM, or
+          any team.
+        </p>
+        <nav aria-label="Footer">
+          <a href="/methodology">Methodology</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/cookies">Cookies</a>
+        </nav>
+      </div>
     </footer>
   </body>
 </html>
+
+<style>
+  .site-head {
+    border-bottom: 2px solid var(--ink);
+  }
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-block: 14px;
+  }
+  .logo {
+    font: 600 var(--s1) / 1 var(--f-display);
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+  .bar nav a {
+    text-decoration: none;
+    padding-block: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  .bar nav a:hover,
+  .bar nav a[aria-current="page"] {
+    border-bottom-color: currentColor;
+  }
+  main {
+    padding-block: 40px 64px;
+  }
+  .site-foot {
+    border-top: 1px solid var(--rule);
+    padding-block: 28px 40px;
+    font-size: var(--s-1);
+  }
+  .site-foot nav a {
+    padding-block: 4px;
+  }
+</style>

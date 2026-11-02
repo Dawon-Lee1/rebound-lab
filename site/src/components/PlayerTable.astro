@@ -1,39 +1,133 @@
 ---
-import { teamLabel, type Player } from "../data/players";
+import { meta, scale, teamLabel, type Player } from "../data/players";
+import { about, type AboutKey } from "../data/glossary";
+import { bare, signed } from "../lib/explain";
+import Bar from "./Bar.astro";
+import Tip from "./Tip.astro";
+import RiskIcon from "./RiskIcon.astro";
 
-type Col = { label: string; value: (p: Player) => string | number };
+// core columns stay on phones; the rest live on the player page
+export type Col = { key: AboutKey; value: (p: Player) => number; kind: "int" | "rate" | "signed" | "luck"; core?: boolean };
 interface Props {
+  id: string;
   caption: string;
   rows: Player[];
   rank: (p: Player) => number | null;
   columns: Col[];
 }
-const { caption, rows, rank, columns } = Astro.props;
+const { id, caption, rows, rank, columns } = Astro.props;
+const show = (c: Col, p: Player) => (c.kind === "int" ? c.value(p) : c.kind === "rate" ? bare(c.value(p)) : signed(c.value(p)));
 ---
 
-<table>
-  <caption>{caption}</caption>
-  <thead>
-    <tr>
-      <th scope="col">Rank</th>
-      <th scope="col">Player</th>
-      {columns.map((c) => <th scope="col">{c.label}</th>)}
-    </tr>
-  </thead>
-  <tbody>
-    {
-      rows.map((p) => (
-        <tr>
-          <td>{rank(p)}</td>
-          <th scope="row">
-            <a href={`/player/${p.player_id}`}>{p.name}</a>
-            {teamLabel(p) && <span class="team"> {teamLabel(p)}</span>}
-          </th>
-          {columns.map((c) => (
-            <td>{c.value(p)}</td>
-          ))}
-        </tr>
-      ))
+<div class="scroll">
+  <table>
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col" class="rank">Rank</th>
+        <th scope="col" class="who">Player</th>
+        {
+          columns.map((c) => (
+            <th scope="col" class:list={["n", { opt: !c.core }]}>
+              {about[c.key][0]}
+              <Tip id={`${id}-${c.key}`} label={about[c.key][0]}>{about[c.key][1]}</Tip>
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((p) => (
+          <tr>
+            <td class="rank num">{rank(p)}</td>
+            <th scope="row" class="who">
+              <a href={`/player/${p.player_id}`}>{p.name}</a>
+              {teamLabel(p) && <span class="team muted">{teamLabel(p)}</span>}
+              {p.playing_time_risk && <RiskIcon />}
+            </th>
+            {columns.map((c) => (
+              <td class:list={["n num", { opt: !c.core }]}>
+                {c.kind === "luck" ? <Bar value={c.value(p)} max={scale.luck} tone="luck" /> : show(c, p)}
+              </td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+<p class="legend muted">
+  <RiskIcon label={false} /> Playing-time risk: under {meta.risk_max_pa} PA, with much of the projected change coming
+  from regression. Hitters like this often lose playing time the next year. See the player page.
+</p>
+
+<style>
+  .scroll {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--s-1);
+  }
+  thead th {
+    border-bottom: 2px solid var(--ink);
+    font: 600 var(--s-1) / 1.2 var(--f-body);
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  td,
+  tbody th {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .rank {
+    width: 3.5em;
+    text-align: right;
+    color: var(--muted);
+  }
+  .who {
+    text-align: left;
+    font-weight: 600;
+  }
+  .who a {
+    margin-inline-end: 6px;
+  }
+  .team {
+    font: 400 var(--s-1) var(--f-mono);
+    margin-inline-end: 6px;
+  }
+  .n {
+    text-align: right;
+  }
+  tbody tr:hover {
+    background: var(--surface);
+  }
+  .legend {
+    font-size: var(--s-1);
+    margin-top: 12px;
+  }
+  @media (max-width: 639px) {
+    .opt {
+      display: none;
     }
-  </tbody>
-</table>
+    td,
+    tbody th,
+    thead th {
+      padding-inline: 4px;
+    }
+    thead th {
+      white-space: normal;
+    }
+    .rank {
+      width: 2.2em;
+    }
+    .n :global(.track) {
+      width: 36px;
+    }
+    .n :global(.bar) {
+      gap: 4px;
+    }
+  }
+</style>

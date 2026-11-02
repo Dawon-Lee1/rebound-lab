@@ -1,0 +1,121 @@
+---
+// One bar + its number. A light track shows the full scale; diverging bars grow left/right from a center zero-line.
+import { bare, barPct, signed } from "../lib/explain";
+
+interface Props {
+  value: number;
+  max: number;
+  tone: "luck" | "reg" | "ink";
+  label?: string; // screen-reader prefix when no column header names the number
+  diverging?: boolean;
+  size?: "sm" | "lg" | "fluid"; // fluid: track fills the remaining width of its container
+  mark?: number; // optional reference line (e.g. league average), non-diverging bars only
+  markLabel?: string; // visible text above the reference line; the page must say the same in text
+}
+const { value, max, tone, label, diverging = true, size = "sm", mark, markLabel } = Astro.props;
+const pct = barPct(value, max) / (diverging ? 2 : 1);
+const neg = diverging && value < 0;
+const color = tone === "luck" && value < 0 ? "sell" : tone; // negative luck = Sell-High brick
+---
+
+<span class={`bar ${size}`}>
+  <span class:list={["track", { div: diverging }]} aria-hidden="true">
+    <span class:list={["fill", color, { neg }]} style={`--p:${pct.toFixed(2)}%`}></span>
+    {
+      mark != null && (
+        <span class="mark" style={`--m:${barPct(mark, max).toFixed(2)}%`}>
+          {markLabel && <span class="mark-label">{markLabel}</span>}
+        </span>
+      )
+    }
+  </span>
+  <span class="num val">{label && <span class="sr-only">{label} </span>}{diverging ? signed(value) : bare(value)}</span>
+</span>
+
+<style>
+  .bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .track {
+    position: relative;
+    display: block;
+    width: 72px;
+    height: 10px;
+    flex: none;
+    background: var(--hair); /* decorative extent only; the zero-line carries the 3:1 contrast */
+  }
+  .lg .track {
+    width: min(320px, 50vw);
+    height: 14px;
+  }
+  .fluid {
+    display: flex;
+    width: 100%;
+  }
+  .fluid .track {
+    flex: 1 1 auto;
+    width: auto;
+    height: 12px;
+  }
+  .track.div::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: calc(50% - 1px);
+    top: -3px;
+    bottom: -3px;
+    border-left: 2px solid var(--rule);
+  }
+  .fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--p);
+    transform-origin: left;
+  }
+  .div .fill {
+    left: 50%;
+  }
+  .div .fill.neg {
+    left: auto;
+    right: 50%;
+    transform-origin: right;
+  }
+  .luck { background: var(--luck); }
+  .sell { background: var(--sell); }
+  .reg { background: var(--reg); }
+  .ink { background: var(--ink); }
+  .mark {
+    position: absolute;
+    z-index: 1;
+    left: calc(var(--m) - 1px);
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--ink);
+    box-shadow: 0 0 0 1px var(--bg); /* stays visible on top of an ink-colored fill */
+  }
+  .mark-label {
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font: 400 0.75rem / 1 var(--f-mono);
+    color: var(--muted);
+  }
+  .val {
+    min-width: 5ch;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fill {
+      animation: grow 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    @keyframes grow {
+      from { transform: scaleX(0); }
+    }
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+// Playing-time risk marker: decorative icon + screen-reader text. `label: false` when visible text next to it already says it.
+interface Props {
+  label?: boolean;
+}
+const { label = true } = Astro.props;
+---
+
+<span class="risk"
+  ><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 14 14"
+    ><path d="M7 1.5 13 12.5H1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path
+    ><path d="M7 5.5v3.2M7 10.2v.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg
+  >{label && <span class="sr-only">Playing-time risk</span>}</span
+>

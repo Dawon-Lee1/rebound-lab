@@ -1,77 +1,238 @@
 ---
 import Base from "../layouts/Base.astro";
-import PlayerTable from "../components/PlayerTable.astro";
-import { f3, meta, players } from "../data/players";
+import PlayerTable, { type Col } from "../components/PlayerTable.astro";
+import TopCards from "../components/TopCards.astro";
+import { meta, players, type Player } from "../data/players";
+import { about } from "../data/glossary";
+import { cbaNotice } from "../data/notice";
 
-const buyLow = players.filter((p) => p.in_buylow_tab).sort((a, b) => (a.rank_luck ?? 0) - (b.rank_luck ?? 0));
-const sellHigh = players.filter((p) => p.in_sell_tab).sort((a, b) => (a.rank_sell ?? 0) - (b.rank_sell ?? 0));
-const rebound = players
-  .filter((p) => p.in_rebound_tab)
-  .sort((a, b) => (a.rank_rebound ?? 0) - (b.rank_rebound ?? 0));
+const season = meta.data_season;
+const updated = new Date(meta.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const byRank = (f: (p: Player) => number | null) => (a: Player, b: Player) => (f(a) ?? 0) - (f(b) ?? 0);
+
+const base: Col[] = [
+  { key: "pa", value: (p) => p.pa, kind: "int" },
+  { key: "woba", value: (p) => p.woba, kind: "rate" },
+  { key: "xwoba", value: (p) => p.xwoba, kind: "rate" },
+  { key: "luck", value: (p) => p.luck, kind: "luck", core: true },
+  { key: "change", value: (p) => p.rebound_score, kind: "signed", core: true },
+];
+const tabs = [
+  {
+    id: "luck",
+    name: "Buy-Low",
+    intro: "Hitters whose contact quality (xwOBA) ran ahead of their results. Unluckiest first.",
+    caption: "Buy-Low: sorted by Luck",
+    rank: (p: Player) => p.rank_luck,
+    rows: players.filter((p) => p.in_buylow_tab),
+    columns: base,
+  },
+  {
+    id: "sell",
+    name: "Sell-High",
+    intro: "Hitters whose results ran ahead of their contact quality (xwOBA). Luckiest first.",
+    caption: "Sell-High: sorted by Luck, most negative first",
+    rank: (p: Player) => p.rank_sell,
+    rows: players.filter((p) => p.in_sell_tab),
+    columns: base,
+  },
+  {
+    id: "rebound",
+    name: "Rebound",
+    intro: `Hitters with ${meta.rebound_tab_min_pa}+ PA, sorted by projected change in wOBA (Luck plus Regression).`,
+    caption: "Rebound: sorted by Proj. change",
+    rank: (p: Player) => p.rank_rebound,
+    rows: players.filter((p) => p.in_rebound_tab),
+    columns: [
+      base[0],
+      base[1],
+      { key: "proj", value: (p) => p.proj_woba_2027, kind: "rate" },
+      base[3],
+      { key: "regression", value: (p) => p.regression, kind: "signed" },
+      base[4],
+    ] as Col[],
+  },
+].map((t) => ({ ...t, rows: t.rows.sort(byRank(t.rank)) }));
+
+const counts = [
+  [players.length, `hitters with ${meta.min_pa_show}+ PA`],
+  [tabs[0].rows.length, "Buy-Low: Luck above zero"],
+  [tabs[1].rows.length, "Sell-High: Luck below zero"],
+] as const;
 ---
 
-<Base title={`${meta.data_season + 1} Hitter Buy-Low Board`}>
-  <h1>{meta.data_season + 1} Hitter Buy-Low Board</h1>
-  <p>Based on the {meta.data_season} season, {meta.players.length} hitters with {meta.min_pa_show}+ PA. Method {meta.method_version}.</p>
+<Base
+  title={`${season + 1} Hitter Buy-Low Board`}
+  description={`Which ${season} MLB hitters were unlucky, and who got lucky? Expected stats vs results for ${players.length} hitters, for ${season + 1} fantasy drafts.`}
+>
+  <section class="hero" aria-labelledby="hero-h">
+    <h1 id="hero-h">Which {season} hitters were unlucky — and who just got lucky?</h1>
+    <p class="lede">
+      {season} regular-season data, updated {updated}. {cbaNotice}
+    </p>
+    <dl class="linescore">
+      {
+        counts.map(([n, label]) => (
+          <div>
+            <dt>{label}</dt>
+            <dd class="num" data-count={n}>{n}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
 
-  <div role="tablist" aria-label="Rankings" hidden>
-    <button role="tab" id="tab-luck" aria-controls="panel-luck" aria-selected="true">Buy-Low</button>
-    <button role="tab" id="tab-sell" aria-controls="panel-sell" aria-selected="false" tabindex="-1">Sell-High</button>
-    <button role="tab" id="tab-rebound" aria-controls="panel-rebound" aria-selected="false" tabindex="-1">Rebound</button>
+  <details class="glossary" id="glossary">
+    <summary>What do these columns mean?</summary>
+    <dl>
+      {
+        Object.values(about).map(([term, text]) => (
+          <div>
+            <dt>{term}</dt>
+            <dd>{text}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </details>
+
+  <div role="tablist" aria-label="Rankings" class="tabs" hidden>
+    {
+      tabs.map((t, i) => (
+        <button role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={String(i === 0)} tabindex={i ? -1 : 0}>
+          {t.name}
+        </button>
+      ))
+    }
   </div>
 
-  <section role="tabpanel" id="panel-luck" aria-labelledby="tab-luck" tabindex="0">
-    <p>Hitters whose expected stats (xwOBA) ran ahead of their results: the unluckiest first.</p>
-    <PlayerTable
-      caption="Buy-Low: sorted by Luck"
-      rows={buyLow}
-      rank={(p) => p.rank_luck}
-      columns={[
-        { label: "PA", value: (p) => p.pa },
-        { label: "wOBA", value: (p) => f3(p.woba) },
-        { label: "xwOBA", value: (p) => f3(p.xwoba) },
-        { label: "Luck", value: (p) => f3(p.luck) },
-        { label: "Rebound", value: (p) => f3(p.rebound_score) },
-      ]}
-    />
-  </section>
-
-  <section role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0">
-    <p>Hitters whose results ran ahead of their expected stats (xwOBA): the luckiest first.</p>
-    <PlayerTable
-      caption="Sell-High: sorted by Luck, most negative first"
-      rows={sellHigh}
-      rank={(p) => p.rank_sell}
-      columns={[
-        { label: "PA", value: (p) => p.pa },
-        { label: "wOBA", value: (p) => f3(p.woba) },
-        { label: "xwOBA", value: (p) => f3(p.xwoba) },
-        { label: "Luck", value: (p) => f3(p.luck) },
-        { label: "Rebound", value: (p) => f3(p.rebound_score) },
-      ]}
-    />
-  </section>
-
-  <section role="tabpanel" id="panel-rebound" aria-labelledby="tab-rebound" tabindex="0">
-    <p>Players with {meta.rebound_tab_min_pa}+ PA, sorted by projected change in wOBA (Luck + Regression).</p>
-    <PlayerTable
-      caption="Rebound: sorted by Rebound Score"
-      rows={rebound}
-      rank={(p) => p.rank_rebound}
-      columns={[
-        { label: "PA", value: (p) => p.pa },
-        { label: "wOBA", value: (p) => f3(p.woba) },
-        { label: `Proj ${meta.data_season + 1} wOBA`, value: (p) => f3(p.proj_woba_2027) },
-        { label: "Rebound", value: (p) => f3(p.rebound_score) },
-        { label: "Luck", value: (p) => f3(p.luck) },
-        { label: "Regression", value: (p) => f3(p.regression) },
-      ]}
-    />
-  </section>
+  {
+    tabs.map((t) => (
+      <section role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} class="panel">
+        <h2 class="panel-h">{t.name}</h2>
+        <p class="muted">{t.intro}</p>
+        <TopCards rows={t.rows} rank={t.rank} />
+        <PlayerTable id={t.id} caption={t.caption} rows={t.rows} rank={t.rank} columns={t.columns} />
+      </section>
+    ))
+  }
 </Base>
 
+<style>
+  .hero {
+    margin-bottom: 36px;
+  }
+  h1 {
+    max-width: 18ch;
+  }
+  .lede {
+    color: var(--muted);
+  }
+  .linescore {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 640px;
+    margin: 28px 0 0;
+    border: 2px solid var(--ink);
+  }
+  .linescore div {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 10px 14px 12px;
+  }
+  .linescore div + div {
+    border-left: 1px solid var(--rule);
+  }
+  .linescore dt {
+    font-size: var(--s-1);
+    color: var(--muted);
+    line-height: 1.3;
+  }
+  .linescore dd {
+    margin: 0 0 4px;
+    font-size: clamp(var(--s3), 7vw, var(--s4));
+    line-height: 1;
+  }
+  .glossary {
+    margin: 0 0 28px;
+    font-size: var(--s-1);
+  }
+  .glossary summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding-block: 6px;
+  }
+  .glossary dl {
+    margin: 8px 0 0;
+    max-width: 72ch;
+  }
+  .glossary div {
+    display: grid;
+    grid-template-columns: 9em 1fr;
+    gap: 12px;
+    padding-block: 6px;
+    border-top: 1px solid var(--hair);
+  }
+  .glossary dt {
+    font-weight: 600;
+  }
+  .glossary dd {
+    margin: 0;
+  }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 20px;
+  }
+  .tabs[hidden] {
+    display: none;
+  }
+  .tabs button {
+    font: 600 var(--s0) var(--f-body);
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-bottom: 4px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 14px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tabs button[aria-selected="true"] {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .tabs button:hover {
+    color: var(--ink);
+  }
+  .panel + .panel {
+    margin-top: 56px;
+  }
+  /* With JS the tab already names the panel; without JS the heading separates the three lists */
+  :global(.js) .panel-h {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  :global(.js) .panel + .panel {
+    margin-top: 0;
+  }
+  @media (max-width: 479px) {
+    .tabs button {
+      padding-inline: 8px;
+    }
+    .linescore div {
+      padding: 8px 10px 10px;
+    }
+  }
+</style>
+
 <script>
-  // Without JS the tablist stays hidden and both panels show. With JS: ARIA tabs, arrows/Home/End switch.
+  // Without JS the tablist stays hidden and all panels show. With JS: ARIA tabs, arrows/Home/End switch.
+  document.documentElement.classList.add("js");
   document.querySelector<HTMLElement>('[role="tablist"]')!.hidden = false;
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
   const select = (t: HTMLButtonElement) => {
@@ -95,4 +256,22 @@ const rebound = players
     });
   });
   select(tabs[0]);
+
+  // Links to the glossary open it; a closed <details> would otherwise scroll into view still collapsed.
+  const glossary = document.getElementById("glossary") as HTMLDetailsElement;
+  for (const a of document.querySelectorAll('a[href="#glossary"]')) a.addEventListener("click", () => (glossary.open = true));
+
+  // One count-up on load. The HTML already holds the final number, so no-JS and reduced motion show it as is.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (const el of document.querySelectorAll<HTMLElement>("[data-count]")) {
+      const end = Number(el.dataset.count);
+      const t0 = performance.now();
+      const step = (t: number) => {
+        const k = Math.min(1, (t - t0) / 600);
+        el.textContent = String(Math.round(end * (1 - (1 - k) ** 3)));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+  }
 </script>

@@ -1,6 +1,6 @@
 {
   "data_season": 2026,
-  "generated_at": "2026-10-31T06:21:18+00:00",
+  "generated_at": "2026-11-01T11:26:29+00:00",
   "method_version": "v1 (w=0.8, k=300)",
   "source": "Baseball Savant",
   "league_woba": 0.316,
@@ -12,6 +12,8 @@
   ],
   "min_pa_show": 200,
   "rebound_tab_min_pa": 300,
+  "risk_max_pa": 350,
+  "risk_min_regression": 0.01,
   "players": [
     {
       "player_id": 663647,
@@ -35,7 +37,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 592663,
@@ -59,7 +62,8 @@
       "rank_rebound": 1,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666397,
@@ -83,7 +87,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 663837,
@@ -107,7 +112,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 677951,
@@ -131,7 +137,8 @@
       "rank_rebound": 61,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669257,
@@ -155,7 +162,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 521692,
@@ -179,7 +187,8 @@
       "rank_rebound": 8,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665966,
@@ -203,7 +212,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 802139,
@@ -227,7 +237,8 @@
       "rank_rebound": 35,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 672275,
@@ -251,7 +262,8 @@
       "rank_rebound": 2,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 701538,
@@ -275,7 +287,8 @@
       "rank_rebound": 41,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 545361,
@@ -299,7 +312,8 @@
       "rank_rebound": 100,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 680776,
@@ -323,7 +337,8 @@
       "rank_rebound": 6,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 608369,
@@ -347,7 +362,8 @@
       "rank_rebound": 47,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 606466,
@@ -371,7 +387,8 @@
       "rank_rebound": 52,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665489,
@@ -395,7 +412,8 @@
       "rank_rebound": 30,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663538,
@@ -419,7 +437,8 @@
       "rank_rebound": 23,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 677594,
@@ -443,7 +462,8 @@
       "rank_rebound": 34,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 624413,
@@ -467,7 +487,8 @@
       "rank_rebound": 144,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663757,
@@ -491,7 +512,8 @@
       "rank_rebound": 37,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665742,
@@ -515,7 +537,8 @@
       "rank_rebound": 188,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 543760,
@@ -539,7 +562,8 @@
       "rank_rebound": 9,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 608070,
@@ -563,7 +587,8 @@
       "rank_rebound": 29,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666176,
@@ -587,7 +612,8 @@
       "rank_rebound": 36,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 701358,
@@ -611,7 +637,8 @@
       "rank_rebound": 20,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 695731,
@@ -635,7 +662,8 @@
       "rank_rebound": 19,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665487,
@@ -659,7 +687,8 @@
       "rank_rebound": 116,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 621493,
@@ -683,7 +712,8 @@
       "rank_rebound": 45,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666182,
@@ -707,7 +737,8 @@
       "rank_rebound": 39,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 676475,
@@ -731,7 +762,8 @@
       "rank_rebound": 112,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 670042,
@@ -755,7 +787,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 686611,
@@ -779,7 +812,8 @@
       "rank_rebound": 22,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 542303,
@@ -803,7 +837,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 695578,
@@ -827,7 +862,8 @@
       "rank_rebound": 178,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 660271,
@@ -851,7 +887,8 @@
       "rank_rebound": 169,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 680574,
@@ -875,7 +912,8 @@
       "rank_rebound": 7,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 700337,
@@ -899,7 +937,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 623168,
@@ -923,7 +962,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 693307,
@@ -947,7 +987,8 @@
       "rank_rebound": 67,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 593428,
@@ -971,7 +1012,8 @@
       "rank_rebound": 42,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 592518,
@@ -995,7 +1037,8 @@
       "rank_rebound": 51,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 607043,
@@ -1019,7 +1062,8 @@
       "rank_rebound": 59,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664761,
@@ -1043,7 +1087,8 @@
       "rank_rebound": 50,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663457,
@@ -1067,7 +1112,8 @@
       "rank_rebound": 64,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666969,
@@ -1091,7 +1137,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 666971,
@@ -1115,7 +1162,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 682668,
@@ -1139,7 +1187,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 681715,
@@ -1163,7 +1212,8 @@
       "rank_rebound": 86,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 676439,
@@ -1187,7 +1237,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 669224,
@@ -1211,7 +1262,8 @@
       "rank_rebound": 11,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 605170,
@@ -1235,7 +1287,8 @@
       "rank_rebound": 14,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 592450,
@@ -1259,7 +1312,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 680779,
@@ -1283,7 +1337,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 656716,
@@ -1307,7 +1362,8 @@
       "rank_rebound": 5,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 660670,
@@ -1331,7 +1387,8 @@
       "rank_rebound": 133,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669477,
@@ -1355,7 +1412,8 @@
       "rank_rebound": 110,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691781,
@@ -1379,7 +1437,8 @@
       "rank_rebound": 53,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 683083,
@@ -1403,7 +1462,8 @@
       "rank_rebound": 4,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 678246,
@@ -1427,7 +1487,8 @@
       "rank_rebound": 139,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 668901,
@@ -1451,7 +1512,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 683146,
@@ -1475,7 +1537,8 @@
       "rank_rebound": 46,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 518692,
@@ -1499,7 +1562,8 @@
       "rank_rebound": 125,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 622761,
@@ -1523,7 +1587,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 671218,
@@ -1547,7 +1612,8 @@
       "rank_rebound": 54,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694378,
@@ -1571,7 +1637,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 671289,
@@ -1595,7 +1662,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 682177,
@@ -1619,7 +1687,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 663728,
@@ -1643,7 +1712,8 @@
       "rank_rebound": 38,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 624641,
@@ -1667,7 +1737,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 668715,
@@ -1691,7 +1762,8 @@
       "rank_rebound": 93,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 670541,
@@ -1715,7 +1787,8 @@
       "rank_rebound": 245,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669357,
@@ -1739,7 +1812,8 @@
       "rank_rebound": 3,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 668709,
@@ -1763,7 +1837,8 @@
       "rank_rebound": 94,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691026,
@@ -1787,7 +1862,8 @@
       "rank_rebound": 26,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 647304,
@@ -1811,7 +1887,8 @@
       "rank_rebound": 44,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669236,
@@ -1835,7 +1912,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 668904,
@@ -1859,7 +1937,8 @@
       "rank_rebound": 32,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663656,
@@ -1883,7 +1962,8 @@
       "rank_rebound": 72,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694208,
@@ -1907,7 +1987,8 @@
       "rank_rebound": 10,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694212,
@@ -1931,7 +2012,8 @@
       "rank_rebound": 48,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669003,
@@ -1955,7 +2037,8 @@
       "rank_rebound": 127,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 695734,
@@ -1979,7 +2062,8 @@
       "rank_rebound": 65,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 641857,
@@ -2003,7 +2087,8 @@
       "rank_rebound": 17,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 657656,
@@ -2027,7 +2112,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 605137,
@@ -2051,7 +2137,8 @@
       "rank_rebound": 91,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 650859,
@@ -2075,7 +2162,8 @@
       "rank_rebound": 27,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686948,
@@ -2099,7 +2187,8 @@
       "rank_rebound": 152,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 687551,
@@ -2123,7 +2212,8 @@
       "rank_rebound": 87,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691011,
@@ -2147,7 +2237,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 677800,
@@ -2171,7 +2262,8 @@
       "rank_rebound": 111,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 667670,
@@ -2195,7 +2287,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 690993,
@@ -2219,7 +2312,8 @@
       "rank_rebound": 95,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694374,
@@ -2243,7 +2337,8 @@
       "rank_rebound": 49,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 678662,
@@ -2267,7 +2362,8 @@
       "rank_rebound": 15,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 701350,
@@ -2291,7 +2387,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 670770,
@@ -2315,7 +2412,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 683002,
@@ -2339,7 +2437,8 @@
       "rank_rebound": 76,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663586,
@@ -2363,7 +2462,8 @@
       "rank_rebound": 43,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 641680,
@@ -2387,7 +2487,8 @@
       "rank_rebound": 16,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805999,
@@ -2411,7 +2512,8 @@
       "rank_rebound": 71,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 596019,
@@ -2435,7 +2537,8 @@
       "rank_rebound": 104,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 702284,
@@ -2459,7 +2562,8 @@
       "rank_rebound": 68,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 677942,
@@ -2483,7 +2587,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 642708,
@@ -2507,7 +2612,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 682626,
@@ -2531,7 +2637,8 @@
       "rank_rebound": 80,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 660821,
@@ -2555,7 +2662,8 @@
       "rank_rebound": 69,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 671056,
@@ -2579,7 +2687,8 @@
       "rank_rebound": 113,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 702616,
@@ -2603,7 +2712,8 @@
       "rank_rebound": 28,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691723,
@@ -2627,7 +2737,8 @@
       "rank_rebound": 119,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 678218,
@@ -2651,7 +2762,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 665019,
@@ -2675,7 +2787,8 @@
       "rank_rebound": 115,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681297,
@@ -2699,7 +2812,8 @@
       "rank_rebound": 66,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 671732,
@@ -2723,7 +2837,8 @@
       "rank_rebound": 99,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 673357,
@@ -2747,7 +2862,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 641487,
@@ -2771,7 +2887,8 @@
       "rank_rebound": 83,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686469,
@@ -2795,7 +2912,8 @@
       "rank_rebound": 128,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691176,
@@ -2819,7 +2937,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 668804,
@@ -2843,7 +2962,8 @@
       "rank_rebound": 149,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681351,
@@ -2867,7 +2987,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 686780,
@@ -2891,7 +3012,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 663886,
@@ -2915,7 +3037,8 @@
       "rank_rebound": 106,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694497,
@@ -2939,7 +3062,8 @@
       "rank_rebound": 24,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694384,
@@ -2963,7 +3087,8 @@
       "rank_rebound": 126,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663993,
@@ -2987,7 +3112,8 @@
       "rank_rebound": 130,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686217,
@@ -3011,7 +3137,8 @@
       "rank_rebound": 18,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669707,
@@ -3035,7 +3162,8 @@
       "rank_rebound": 21,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686527,
@@ -3059,7 +3187,8 @@
       "rank_rebound": 179,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669127,
@@ -3083,7 +3212,8 @@
       "rank_rebound": 171,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 810938,
@@ -3107,7 +3237,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 800325,
@@ -3131,7 +3262,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 701398,
@@ -3155,7 +3287,8 @@
       "rank_rebound": 136,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 547180,
@@ -3179,7 +3312,8 @@
       "rank_rebound": 197,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 661388,
@@ -3203,7 +3337,8 @@
       "rank_rebound": 129,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681082,
@@ -3227,7 +3362,8 @@
       "rank_rebound": 123,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666139,
@@ -3251,7 +3387,8 @@
       "rank_rebound": 25,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 682987,
@@ -3275,7 +3412,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 666023,
@@ -3299,7 +3437,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 641933,
@@ -3323,7 +3462,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 668939,
@@ -3347,7 +3487,8 @@
       "rank_rebound": 121,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664702,
@@ -3371,7 +3512,8 @@
       "rank_rebound": 33,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 682985,
@@ -3395,7 +3537,8 @@
       "rank_rebound": 194,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 803011,
@@ -3419,7 +3562,8 @@
       "rank_rebound": 163,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 592885,
@@ -3443,7 +3587,8 @@
       "rank_rebound": 78,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 687093,
@@ -3467,7 +3612,8 @@
       "rank_rebound": 81,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 573262,
@@ -3491,7 +3637,8 @@
       "rank_rebound": 77,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666211,
@@ -3515,7 +3662,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 500743,
@@ -3539,7 +3687,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 662139,
@@ -3563,7 +3712,8 @@
       "rank_rebound": 40,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686555,
@@ -3587,7 +3737,8 @@
       "rank_rebound": 55,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 545121,
@@ -3611,7 +3762,8 @@
       "rank_rebound": 57,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 700932,
@@ -3635,7 +3787,8 @@
       "rank_rebound": 75,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 668952,
@@ -3659,7 +3812,8 @@
       "rank_rebound": null,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 605141,
@@ -3683,7 +3837,8 @@
       "rank_rebound": 155,
       "in_buylow_tab": true,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 657757,
@@ -3707,7 +3862,8 @@
       "rank_rebound": 108,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669701,
@@ -3731,7 +3887,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 694728,
@@ -3755,7 +3912,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 668723,
@@ -3779,7 +3937,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 682998,
@@ -3803,7 +3962,8 @@
       "rank_rebound": 157,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 690976,
@@ -3827,7 +3987,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 696285,
@@ -3851,7 +4012,8 @@
       "rank_rebound": 107,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 668885,
@@ -3875,7 +4037,8 @@
       "rank_rebound": 74,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 672580,
@@ -3899,7 +4062,8 @@
       "rank_rebound": 117,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 606192,
@@ -3923,7 +4087,8 @@
       "rank_rebound": 145,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665052,
@@ -3947,7 +4112,8 @@
       "rank_rebound": 242,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 621566,
@@ -3971,7 +4137,8 @@
       "rank_rebound": 176,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691785,
@@ -3995,7 +4162,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 624585,
@@ -4019,7 +4187,8 @@
       "rank_rebound": 56,
       "in_buylow_tab": false,
       "in_sell_tab": false,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 641355,
@@ -4043,7 +4212,8 @@
       "rank_rebound": 156,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 701807,
@@ -4067,7 +4237,8 @@
       "rank_rebound": 165,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 696030,
@@ -4091,7 +4262,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 694203,
@@ -4115,7 +4287,8 @@
       "rank_rebound": 12,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 683357,
@@ -4139,7 +4312,8 @@
       "rank_rebound": 84,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 657041,
@@ -4163,7 +4337,8 @@
       "rank_rebound": 109,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805811,
@@ -4187,7 +4362,8 @@
       "rank_rebound": 214,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691720,
@@ -4211,7 +4387,8 @@
       "rank_rebound": 164,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 643446,
@@ -4235,7 +4412,8 @@
       "rank_rebound": 90,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 808982,
@@ -4259,7 +4437,8 @@
       "rank_rebound": 124,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669394,
@@ -4283,7 +4462,8 @@
       "rank_rebound": 122,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805808,
@@ -4307,7 +4487,8 @@
       "rank_rebound": 185,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 683737,
@@ -4331,7 +4512,8 @@
       "rank_rebound": 147,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 642086,
@@ -4355,7 +4537,8 @@
       "rank_rebound": 85,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665877,
@@ -4379,7 +4562,8 @@
       "rank_rebound": 60,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 650402,
@@ -4403,7 +4587,8 @@
       "rank_rebound": 148,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664954,
@@ -4427,7 +4612,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 642350,
@@ -4451,7 +4637,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 695506,
@@ -4475,7 +4662,8 @@
       "rank_rebound": 204,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 682622,
@@ -4499,7 +4687,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 672695,
@@ -4523,7 +4712,8 @@
       "rank_rebound": 159,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 804606,
@@ -4547,7 +4737,8 @@
       "rank_rebound": 131,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 672724,
@@ -4571,7 +4762,8 @@
       "rank_rebound": 31,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 806198,
@@ -4595,7 +4787,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 643217,
@@ -4619,7 +4812,8 @@
       "rank_rebound": 114,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 621020,
@@ -4643,7 +4837,8 @@
       "rank_rebound": 102,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 699912,
@@ -4667,7 +4862,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 683011,
@@ -4691,7 +4887,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 672960,
@@ -4715,7 +4912,8 @@
       "rank_rebound": 151,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 682829,
@@ -4739,7 +4937,8 @@
       "rank_rebound": 230,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691023,
@@ -4763,7 +4962,8 @@
       "rank_rebound": 177,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681481,
@@ -4787,7 +4987,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 650490,
@@ -4811,7 +5012,8 @@
       "rank_rebound": 182,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 656941,
@@ -4835,7 +5037,8 @@
       "rank_rebound": 208,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 596142,
@@ -4859,7 +5062,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 701675,
@@ -4883,7 +5087,8 @@
       "rank_rebound": 62,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 655316,
@@ -4907,7 +5112,8 @@
       "rank_rebound": 63,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 808959,
@@ -4931,7 +5137,8 @@
       "rank_rebound": 201,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 678391,
@@ -4955,7 +5162,8 @@
       "rank_rebound": 79,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681508,
@@ -4979,7 +5187,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 666018,
@@ -5003,7 +5212,8 @@
       "rank_rebound": 183,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 607208,
@@ -5027,7 +5237,8 @@
       "rank_rebound": 98,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 806068,
@@ -5051,7 +5262,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 687859,
@@ -5075,7 +5287,8 @@
       "rank_rebound": 160,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664728,
@@ -5099,7 +5312,8 @@
       "rank_rebound": 13,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": true
     },
     {
       "player_id": 687221,
@@ -5123,7 +5337,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 691788,
@@ -5147,7 +5362,8 @@
       "rank_rebound": 82,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 687637,
@@ -5171,7 +5387,8 @@
       "rank_rebound": 96,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 677588,
@@ -5195,7 +5412,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 680757,
@@ -5219,7 +5437,8 @@
       "rank_rebound": 168,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 695657,
@@ -5243,7 +5462,8 @@
       "rank_rebound": 105,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 656555,
@@ -5267,7 +5487,8 @@
       "rank_rebound": 103,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 700250,
@@ -5291,7 +5512,8 @@
       "rank_rebound": 237,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 701762,
@@ -5315,7 +5537,8 @@
       "rank_rebound": 251,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669016,
@@ -5339,7 +5562,8 @@
       "rank_rebound": 118,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805300,
@@ -5363,7 +5587,8 @@
       "rank_rebound": 137,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 671739,
@@ -5387,7 +5612,8 @@
       "rank_rebound": 192,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 680777,
@@ -5411,7 +5637,8 @@
       "rank_rebound": 218,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 608348,
@@ -5435,7 +5662,8 @@
       "rank_rebound": 142,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 592626,
@@ -5459,7 +5687,8 @@
       "rank_rebound": 213,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 687462,
@@ -5483,7 +5712,8 @@
       "rank_rebound": 138,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665750,
@@ -5507,7 +5737,8 @@
       "rank_rebound": 58,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 624424,
@@ -5531,7 +5762,8 @@
       "rank_rebound": 206,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 680700,
@@ -5555,7 +5787,8 @@
       "rank_rebound": 135,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 814439,
@@ -5579,7 +5812,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 691777,
@@ -5603,7 +5837,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 676724,
@@ -5627,7 +5862,8 @@
       "rank_rebound": 181,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681624,
@@ -5651,7 +5887,8 @@
       "rank_rebound": 205,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 807799,
@@ -5675,7 +5912,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 702222,
@@ -5699,7 +5937,8 @@
       "rank_rebound": 92,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 657136,
@@ -5723,7 +5962,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 678554,
@@ -5747,7 +5987,8 @@
       "rank_rebound": 255,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665926,
@@ -5771,7 +6012,8 @@
       "rank_rebound": 73,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 641343,
@@ -5795,7 +6037,8 @@
       "rank_rebound": 246,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686681,
@@ -5819,7 +6062,8 @@
       "rank_rebound": 146,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686765,
@@ -5843,7 +6087,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 683766,
@@ -5867,7 +6112,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 682663,
@@ -5891,7 +6137,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 621439,
@@ -5915,7 +6162,8 @@
       "rank_rebound": 226,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 630105,
@@ -5939,7 +6187,8 @@
       "rank_rebound": 70,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 676609,
@@ -5963,7 +6212,8 @@
       "rank_rebound": 89,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 620443,
@@ -5987,7 +6237,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 681393,
@@ -6011,7 +6262,8 @@
       "rank_rebound": 166,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 609280,
@@ -6035,7 +6287,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 572233,
@@ -6059,7 +6312,8 @@
       "rank_rebound": 143,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669065,
@@ -6083,7 +6337,8 @@
       "rank_rebound": 195,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 670032,
@@ -6107,7 +6362,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 691406,
@@ -6131,7 +6387,8 @@
       "rank_rebound": 235,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 571970,
@@ -6155,7 +6412,8 @@
       "rank_rebound": 224,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666126,
@@ -6179,7 +6437,8 @@
       "rank_rebound": 141,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 667472,
@@ -6203,7 +6462,8 @@
       "rank_rebound": 174,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 553869,
@@ -6227,7 +6487,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 693304,
@@ -6251,7 +6512,8 @@
       "rank_rebound": 189,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664023,
@@ -6275,7 +6537,8 @@
       "rank_rebound": 170,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 673962,
@@ -6299,7 +6562,8 @@
       "rank_rebound": 240,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 800050,
@@ -6323,7 +6587,8 @@
       "rank_rebound": 223,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694671,
@@ -6347,7 +6612,8 @@
       "rank_rebound": 186,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 643289,
@@ -6371,7 +6637,8 @@
       "rank_rebound": 153,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 807713,
@@ -6395,7 +6662,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 543807,
@@ -6419,7 +6687,8 @@
       "rank_rebound": 162,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669242,
@@ -6443,7 +6712,8 @@
       "rank_rebound": 167,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 671277,
@@ -6467,7 +6737,8 @@
       "rank_rebound": 221,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 669364,
@@ -6491,7 +6762,8 @@
       "rank_rebound": 175,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 703601,
@@ -6515,7 +6787,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 642715,
@@ -6539,7 +6812,8 @@
       "rank_rebound": 140,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666152,
@@ -6563,7 +6837,8 @@
       "rank_rebound": 101,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 575929,
@@ -6587,7 +6862,8 @@
       "rank_rebound": 261,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 668930,
@@ -6611,7 +6887,8 @@
       "rank_rebound": 220,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805779,
@@ -6635,7 +6912,8 @@
       "rank_rebound": 120,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 672640,
@@ -6659,7 +6937,8 @@
       "rank_rebound": 199,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 502671,
@@ -6683,7 +6962,8 @@
       "rank_rebound": 193,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 656775,
@@ -6707,7 +6987,8 @@
       "rank_rebound": 88,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 687952,
@@ -6731,7 +7012,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 672515,
@@ -6755,7 +7037,8 @@
       "rank_rebound": 257,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665833,
@@ -6779,7 +7062,8 @@
       "rank_rebound": 258,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 694192,
@@ -6803,7 +7087,8 @@
       "rank_rebound": 236,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 596115,
@@ -6827,7 +7112,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 677587,
@@ -6851,7 +7137,8 @@
       "rank_rebound": 154,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665862,
@@ -6875,7 +7162,8 @@
       "rank_rebound": 158,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 543877,
@@ -6899,7 +7187,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 669134,
@@ -6923,7 +7212,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 663616,
@@ -6947,7 +7237,8 @@
       "rank_rebound": 227,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 673237,
@@ -6971,7 +7262,8 @@
       "rank_rebound": 207,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 683748,
@@ -6995,7 +7287,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 656305,
@@ -7019,7 +7312,8 @@
       "rank_rebound": 150,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 642201,
@@ -7043,7 +7337,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 656537,
@@ -7067,7 +7362,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 701678,
@@ -7091,7 +7387,8 @@
       "rank_rebound": 191,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 672386,
@@ -7115,7 +7412,8 @@
       "rank_rebound": 210,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 650489,
@@ -7139,7 +7437,8 @@
       "rank_rebound": 198,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 679845,
@@ -7163,7 +7462,8 @@
       "rank_rebound": 172,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665161,
@@ -7187,7 +7487,8 @@
       "rank_rebound": 228,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 679822,
@@ -7211,7 +7512,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 553993,
@@ -7235,7 +7537,8 @@
       "rank_rebound": 187,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 656811,
@@ -7259,7 +7562,8 @@
       "rank_rebound": 211,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691016,
@@ -7283,7 +7587,8 @@
       "rank_rebound": 234,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665804,
@@ -7307,7 +7612,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 687263,
@@ -7331,7 +7637,8 @@
       "rank_rebound": 200,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 680869,
@@ -7355,7 +7662,8 @@
       "rank_rebound": 232,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681807,
@@ -7379,7 +7687,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 687401,
@@ -7403,7 +7712,8 @@
       "rank_rebound": 184,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 643376,
@@ -7427,7 +7737,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 685133,
@@ -7451,7 +7762,8 @@
       "rank_rebound": 233,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664770,
@@ -7475,7 +7787,8 @@
       "rank_rebound": 180,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663743,
@@ -7499,7 +7812,8 @@
       "rank_rebound": 134,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 699393,
@@ -7523,7 +7837,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 703607,
@@ -7547,7 +7862,8 @@
       "rank_rebound": 222,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 595978,
@@ -7571,7 +7887,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 686668,
@@ -7595,7 +7912,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": true
     },
     {
       "player_id": 695600,
@@ -7619,7 +7937,8 @@
       "rank_rebound": 219,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 663968,
@@ -7643,7 +7962,8 @@
       "rank_rebound": 173,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 679529,
@@ -7667,7 +7987,8 @@
       "rank_rebound": 217,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 682657,
@@ -7691,7 +8012,8 @@
       "rank_rebound": 203,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 670764,
@@ -7715,7 +8037,8 @@
       "rank_rebound": 97,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 677649,
@@ -7739,7 +8062,8 @@
       "rank_rebound": 196,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 622268,
@@ -7763,7 +8087,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 671976,
@@ -7787,7 +8112,8 @@
       "rank_rebound": 225,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664040,
@@ -7811,7 +8137,8 @@
       "rank_rebound": 241,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 650333,
@@ -7835,7 +8162,8 @@
       "rank_rebound": 209,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665953,
@@ -7859,7 +8187,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 545341,
@@ -7883,7 +8212,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 646240,
@@ -7907,7 +8237,8 @@
       "rank_rebound": 252,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 682928,
@@ -7931,7 +8262,8 @@
       "rank_rebound": 244,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 702332,
@@ -7955,7 +8287,8 @@
       "rank_rebound": 190,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 645277,
@@ -7979,7 +8312,8 @@
       "rank_rebound": 161,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 807712,
@@ -8003,7 +8337,8 @@
       "rank_rebound": 238,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 676391,
@@ -8027,7 +8362,8 @@
       "rank_rebound": 132,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 699013,
@@ -8051,7 +8387,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 673548,
@@ -8075,7 +8412,8 @@
       "rank_rebound": 253,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 683953,
@@ -8099,7 +8437,8 @@
       "rank_rebound": 216,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691718,
@@ -8123,7 +8462,8 @@
       "rank_rebound": 264,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664983,
@@ -8147,7 +8487,8 @@
       "rank_rebound": 243,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 665923,
@@ -8171,7 +8512,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 694249,
@@ -8195,7 +8537,8 @@
       "rank_rebound": 259,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 683734,
@@ -8219,7 +8562,8 @@
       "rank_rebound": 266,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 621438,
@@ -8243,7 +8587,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 608324,
@@ -8267,7 +8612,8 @@
       "rank_rebound": 248,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 660688,
@@ -8291,7 +8637,8 @@
       "rank_rebound": 229,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 689414,
@@ -8315,7 +8662,8 @@
       "rank_rebound": 249,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 668227,
@@ -8339,7 +8687,8 @@
       "rank_rebound": 262,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 670623,
@@ -8363,7 +8712,8 @@
       "rank_rebound": 250,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 696100,
@@ -8387,7 +8737,8 @@
       "rank_rebound": 256,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 686797,
@@ -8411,7 +8762,8 @@
       "rank_rebound": 215,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 514888,
@@ -8435,7 +8787,8 @@
       "rank_rebound": 202,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 666160,
@@ -8459,7 +8812,8 @@
       "rank_rebound": 231,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 805367,
@@ -8483,7 +8837,8 @@
       "rank_rebound": 247,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 681198,
@@ -8507,7 +8862,8 @@
       "rank_rebound": 265,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 802415,
@@ -8531,7 +8887,8 @@
       "rank_rebound": 212,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 664034,
@@ -8555,7 +8912,8 @@
       "rank_rebound": 267,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 691594,
@@ -8579,7 +8937,8 @@
       "rank_rebound": 260,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 675961,
@@ -8603,7 +8962,8 @@
       "rank_rebound": null,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": false
+      "in_rebound_tab": false,
+      "playing_time_risk": false
     },
     {
       "player_id": 678882,
@@ -8627,7 +8987,8 @@
       "rank_rebound": 254,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 676356,
@@ -8651,7 +9012,8 @@
       "rank_rebound": 239,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     },
     {
       "player_id": 571448,
@@ -8675,7 +9037,8 @@
       "rank_rebound": 263,
       "in_buylow_tab": false,
       "in_sell_tab": true,
-      "in_rebound_tab": true
+      "in_rebound_tab": true,
+      "playing_time_risk": false
     }
   ]
 }

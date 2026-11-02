@@ -1,4 +1,4 @@
-"""방법론 점검 2개 (2026-10-31 리뷰 항목). 기존 파일은 그대로 두고 model.py만 쓴다.
+"""방법론 점검 3개 (2026-10-31 리뷰 항목, (c)는 2026-11-01 추가). 기존 파일은 그대로 두고 model.py만 쓴다.
 
 (a) 생존 편향: 백테스트는 다음 해 100타석+ 선수만 쓴다. 빠진 선수의 rebound_score가 남은 선수와 다른지 본다.
 (b) 회귀 목표: 리그평균(올해 1타석+ 전체) 대신 다른 목표 평균을 쓰면 검증 RMSE가 좋아지는지 본다.
@@ -6,6 +6,7 @@
     - 다음 해 100타석+ 평균: 예측 시점에 모르는 미래 정보 → 상한 확인용
 (w, k)는 목표마다 학습셋(2024→2025)에서 04와 같은 격자로 다시 고르고, 검증(2025→2026) 200타석+ RMSE로 비교.
 결과는 제안만 출력하고 model_params.json은 바꾸지 않는다.
+(c) 출전 위험: 올해 200타석+ 선수의 다음 해 탈락 비율을 타석·regression 구간별로 보고, 05의 playing_time_risk 기준 근거로 쓴다.
 """
 import sys
 
@@ -20,6 +21,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 WS = np.round(np.arange(0, 1.01, 0.1), 1)  # 04와 같은 격자
 KS = (0, 50, 100, 200, 300, 500, 800)
 MIN_GAIN = 0.02
+RISK_MAX_PA, RISK_MIN_REG = 350, 0.010  # 05_build_json.py와 같은 값. 결정기록 2026-11-01
 
 
 def pair_all(year_from, year_to):
@@ -104,3 +106,18 @@ if __name__ == "__main__":
     print(f"\n판단(올해 100타석+, {model.MIN_PA_SHOW}타석+ 검증 RMSE 개선 {gain:.1%}, 기준 {MIN_GAIN:.0%}): "
           + ("채택 제안 (model_params.json은 바꾸지 않음, 결정 후 04에 반영)" if gain >= MIN_GAIN else "현재 리그평균 유지"))
     print("주의: 이 검증셋은 선택에 쓰였으므로 여기 RMSE를 사이트 성능 수치로 쓰지 않는다")
+
+    print("\n=== (c) 출전 위험: 올해 200타석+ 선수의 다음 해 탈락(100타석 미만) 비율 ===")
+    print(f"제안 기준: PA < {RISK_MAX_PA} 그리고 regression >= {RISK_MIN_REG} (regression은 3자리 반올림값)")
+    print("주의: 기준값을 이 두 기간에서 골랐으므로 표본 내 결과. 화면에 비율 숫자를 쓰지 않는다\n")
+    for (y0, y1), (m, a, b) in pairs.items():
+        s = m[m["pa"] >= model.MIN_PA_SHOW].assign(drop=lambda x: ~x["kept"])
+        s["reg"] = np.round(model.regression(s, k0, model.league_woba(a)), 3)
+        flag = (s["pa"] < RISK_MAX_PA) & (s["reg"] >= RISK_MIN_REG)
+        print(f"[{y0}→{y1}] {len(s)}명, 전체 탈락률 {s['drop'].mean():.3f}")
+        for name, col, bins in (("PA", "pa", [200, 300, 400, 500, 10_000]), ("regression", "reg", [-1, 0, 0.01, 0.02, 1])):
+            g = s.groupby(pd.cut(s[col], bins, right=False), observed=True)["drop"].agg(["size", "mean"])
+            assert g["size"].sum() == len(s)  # 구간이 표본 전체를 덮음
+            print(f"{name} 구간\n{g.round(3).to_string()}")
+        print(f"기준 해당 {int(flag.sum())}명 탈락률 {s.loc[flag, 'drop'].mean():.3f} | 나머지 {int((~flag).sum())}명 "
+              f"{s.loc[~flag, 'drop'].mean():.3f} | 탈락자 중 해당 비율 {s.loc[flag, 'drop'].sum() / s['drop'].sum():.2f}\n")

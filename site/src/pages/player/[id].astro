@@ -1,43 +1,235 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { f3, meta, players, teamLabel, type Player } from "../../data/players";
+import Bar from "../../components/Bar.astro";
+import Tip from "../../components/Tip.astro";
+import RiskIcon from "../../components/RiskIcon.astro";
+import { meta, players, scale, type Player } from "../../data/players";
+import { about } from "../../data/glossary";
+import { bare, explain, metaLine, signed, tipChange, tipLuck, tipReg } from "../../lib/explain";
 
 export function getStaticPaths() {
   return players.map((p) => ({ params: { id: String(p.player_id) }, props: { p } }));
 }
 const { p } = Astro.props as { p: Player };
+const season = meta.data_season;
+const lg = meta.league_woba;
+const ranks: [string, string | number][] = [
+  ["Buy-Low", p.rank_luck ? `#${p.rank_luck}` : "Not listed (Luck not positive)"],
+  ["Sell-High", p.rank_sell ? `#${p.rank_sell}` : "Not listed (Luck not negative)"],
+  ["Rebound", p.rank_rebound ? `#${p.rank_rebound}` : `Not ranked (under ${meta.rebound_tab_min_pa} PA)`],
+];
 const rows: [string, string | number][] = [
   ["PA", p.pa],
-  ["wOBA", f3(p.woba)],
-  ["xwOBA", f3(p.xwoba)],
-  ["BA", f3(p.ba)],
-  ["xBA", f3(p.xba)],
-  ["SLG", f3(p.slg)],
-  ["xSLG", f3(p.xslg)],
-  [`Proj ${meta.data_season + 1} wOBA`, f3(p.proj_woba_2027)],
-  ["Rebound Score", f3(p.rebound_score)],
-  ["Luck", f3(p.luck)],
-  ["Regression", f3(p.regression)],
-  ["Buy-Low rank", p.rank_luck ?? "Not in Buy-Low list (Luck not positive)"],
-  ["Sell-High rank", p.rank_sell ?? "Not in Sell-High list (Luck not negative)"],
-  ["Rebound rank", p.rank_rebound ?? `Not ranked (under ${meta.rebound_tab_min_pa} PA)`],
+  ["wOBA", bare(p.woba)],
+  ["xwOBA", bare(p.xwoba)],
+  ["BA", bare(p.ba)],
+  ["xBA", bare(p.xba)],
+  ["SLG", bare(p.slg)],
+  ["xSLG", bare(p.xslg)],
+  [`Proj. ${season + 1} wOBA`, bare(p.proj_woba_2027)],
+  ["Proj. change", signed(p.rebound_score)],
+  ["Luck", signed(p.luck)],
+  ["Regression", signed(p.regression)],
 ];
+const line = metaLine(p);
 ---
 
-<Base title={p.name}>
-  <h1>{p.name}{teamLabel(p) && ` (${teamLabel(p)})`}</h1>
-  <table>
-    <caption>{meta.data_season} season totals and {meta.data_season + 1} projection</caption>
-    <tbody>
-      {
-        rows.map(([k, v]) => (
-          <tr>
-            <th scope="row">{k}</th>
-            <td>{v}</td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
-  <p><a href="/">Back to the board</a></p>
+<Base title={p.name} description={`${p.name}: ${season} wOBA vs xwOBA, Luck and Regression, and the projected ${season + 1} change.`}>
+  <p class="back"><a href="/">Back to the board</a></p>
+  <h1>{p.name}</h1>
+  {line && <p class="meta">{line}</p>}
+  <dl class="ranks">
+    {
+      ranks.map(([k, v]) => (
+        <div>
+          <dt>{k}</dt>
+          <dd class:list={{ num: String(v).startsWith("#") }}>{v}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  {
+    p.playing_time_risk && (
+      <aside class="risk-note" aria-labelledby="risk-h">
+        <p>
+          <strong id="risk-h">
+            <RiskIcon label={false} /> Playing-time risk.
+          </strong>{" "}
+          {p.name} had {p.pa} PA, and much of the projected change is regression toward the league average. Hitters with
+          this profile lost regular playing time far more often the next season, so the projection may not get the chance
+          to play out.
+        </p>
+      </aside>
+    )
+  }
+
+  <p class="read">{explain(p, lg)}</p>
+
+  <section aria-labelledby="h-contact">
+    <h2 id="h-contact">Results vs contact quality</h2>
+    <dl class="bars contact">
+      <div>
+        <dt>wOBA <span class="muted">(results)</span></dt>
+        <dd><Bar value={p.woba} max={scale.woba} tone="ink" diverging={false} size="lg" mark={lg} markLabel={`League avg ${bare(lg)}`} /></dd>
+      </div>
+      <div>
+        <dt>xwOBA <span class="muted">(contact)</span></dt>
+        <dd><Bar value={p.xwoba} max={scale.woba} tone="luck" diverging={false} size="lg" mark={lg} /></dd>
+      </div>
+    </dl>
+    <p class="muted note">Both bars start at zero. The vertical line marks the league average wOBA ({bare(lg)}).</p>
+  </section>
+
+  <section aria-labelledby="h-split">
+    <h2 id="h-split">Where the projected change comes from</h2>
+    <p class="sr-only">
+      Luck {signed(p.luck)} plus regression {signed(p.regression)} equals projected change {signed(p.rebound_score)}.
+    </p>
+    <dl class="bars split">
+      <div>
+        <dt>Luck</dt>
+        <dd>
+          <Bar value={p.luck} max={scale.change} tone="luck" size="lg" />
+          <Tip id="tip-luck" label={`Luck ${signed(p.luck)}`}>{tipLuck(p)}</Tip>
+        </dd>
+      </div>
+      <div>
+        <dt>+ Regression</dt>
+        <dd>
+          <Bar value={p.regression} max={scale.change} tone="reg" size="lg" />
+          <Tip id="tip-reg" label={`Regression ${signed(p.regression)}`}>{tipReg(p, lg)}</Tip>
+        </dd>
+      </div>
+      <div class="sum">
+        <dt>= Proj. change</dt>
+        <dd>
+          <Bar value={p.rebound_score} max={scale.change} tone="ink" size="lg" />
+          <Tip id="tip-chg" label={`Proj. change ${signed(p.rebound_score)}`}>{tipChange(p, season + 1)}</Tip>
+        </dd>
+      </div>
+    </dl>
+    <p class="muted note">{about.luck[1]} {about.regression[1]}</p>
+  </section>
+
+  <section aria-labelledby="h-totals">
+    <h2 id="h-totals">{season} season totals</h2>
+    <table class="totals">
+      <caption class="sr-only">{season} season totals and {season + 1} projection</caption>
+      <tbody>
+        {
+          rows.map(([k, v]) => (
+            <tr>
+              <th scope="row">{k}</th>
+              <td class="num">{v}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
 </Base>
+
+<style>
+  .back {
+    font-size: var(--s-1);
+    margin-bottom: 20px;
+  }
+  .meta {
+    font-family: var(--f-mono);
+    color: var(--muted);
+    margin-top: -4px;
+  }
+  .ranks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    column-gap: 24px;
+    max-width: 720px;
+    margin: 20px 0 28px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .ranks div {
+    padding: 8px 0 10px;
+  }
+  .ranks dt {
+    font-size: var(--s-1);
+    color: var(--muted);
+  }
+  .ranks dd {
+    margin: 0;
+    font-size: var(--s-1);
+  }
+  .ranks dd.num {
+    font-size: var(--s2);
+  }
+  .risk-note {
+    border-left: 4px solid var(--sell);
+    background: var(--surface);
+    padding: 14px 16px 2px;
+    margin: 0 0 28px;
+    max-width: 68ch;
+  }
+  .risk-note strong {
+    color: var(--sell);
+  }
+  .read {
+    font: 400 var(--s1) / 1.5 var(--f-body);
+    max-width: 52ch;
+    margin-bottom: 36px;
+  }
+  section {
+    margin-bottom: 40px;
+  }
+  .bars {
+    margin: 0;
+  }
+  .bars div {
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    align-items: center;
+    min-height: 40px;
+  }
+  .bars dt {
+    font-weight: 600;
+  }
+  .bars dd {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  .contact {
+    padding-top: 12px; /* room for the league-average label above the first bar */
+  }
+  .split {
+    width: fit-content; /* sum rule ends with the bars, not at the page edge */
+    max-width: 100%;
+  }
+  .split .sum {
+    border-top: 2px solid var(--ink);
+  }
+  .note {
+    font-size: var(--s-1);
+    margin-top: 10px;
+  }
+  .totals {
+    border-collapse: collapse;
+    min-width: min(100%, 360px);
+  }
+  .totals th,
+  .totals td {
+    padding: 6px 12px 6px 0;
+    border-bottom: 1px solid var(--hair);
+    text-align: left;
+    font-weight: 400;
+  }
+  .totals td {
+    text-align: right;
+  }
+  @media (max-width: 479px) {
+    .bars div {
+      grid-template-columns: 1fr;
+      padding-block: 4px;
+    }
+  }
+</style>

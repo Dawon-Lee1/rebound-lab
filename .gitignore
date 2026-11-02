@@ -12,3 +12,4 @@ data/raw/
 *.parquet
 # 백테스트 출력(소수 4자리 선수 표). model_params.json은 05가 읽으므로 커밋
 analysis/results/*.txt
+.superpowers/

@@ -1,0 +1,51 @@
+---
+// "?" button that opens a native popover: works without JS, Esc closes it, reachable by Tab.
+interface Props {
+  id: string;
+  label: string;
+}
+const { id, label } = Astro.props;
+---
+
+<button type="button" class="tip" popovertarget={id} aria-label={`About ${label}`}>?</button>
+<div popover id={id} class="pop">
+  <p><strong>{label}</strong></p>
+  <p><slot /></p>
+</div>
+
+<style>
+  .tip {
+    inline-size: 24px;
+    block-size: 24px;
+    margin-inline-start: 4px;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font: 600 12px / 1 var(--f-body);
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .tip:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .pop {
+    max-inline-size: min(34ch, calc(100vw - 32px));
+    padding: 14px 16px 4px;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 var(--s-1) / 1.5 var(--f-body);
+    text-align: left;
+    white-space: normal;
+  }
+  .pop::backdrop {
+    background: transparent;
+  }
+  .pop p {
+    margin: 0 0 10px;
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+// Top 3 of the current list, scouting-card style. Bars share one scale: the largest |Luck|, |Regression| or |Proj. change| among these 3.
+import type { Player } from "../data/players";
+import { metaLine } from "../lib/explain";
+import Bar from "./Bar.astro";
+import RiskIcon from "./RiskIcon.astro";
+
+interface Props {
+  rows: Player[];
+  rank: (p: Player) => number | null;
+}
+const { rows, rank } = Astro.props;
+const top = rows.slice(0, 3);
+const max = Math.max(...top.flatMap((p) => [p.luck, p.regression, p.rebound_score].map(Math.abs)));
+const lines = [
+  ["Luck", "luck", "luck"],
+  ["Regression", "regression", "reg"],
+  ["Proj. change", "rebound_score", "ink"],
+] as const;
+---
+
+<ol class="cards" aria-label="Top 3">
+  {
+    top.map((p) => (
+      <li class="card">
+        <span class="no num" aria-hidden="true">{rank(p)}</span>
+        <h3>
+          <a href={`/player/${p.player_id}`}>{p.name}</a>
+          {p.playing_time_risk && <RiskIcon />}
+        </h3>
+        <p class="muted meta">{metaLine(p) || " "}</p>
+        <dl>
+          {lines.map(([name, key, tone]) => (
+            <div class:list={{ sum: key === "rebound_score" }}>
+              <dt>{name}</dt>
+              <dd>
+                <Bar value={p[key]} max={max} tone={tone} size="fluid" />
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </li>
+    ))
+  }
+</ol>
+<p class="foot">
+  <span class="muted">Bars are scaled to the top 3.</span>
+  <a href="#glossary" class="to-glossary">What do Luck, Regression, and Proj. change mean?</a>
+</p>
+
+<style>
+  .cards {
+    list-style: none;
+    margin: 24px 0 8px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px 28px;
+  }
+  .card {
+    position: relative;
+    border-top: 3px solid var(--ink);
+    padding: 12px 0 0 2.6em;
+  }
+  .no {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font: 600 var(--s3) / 1 var(--f-display);
+  }
+  h3 {
+    margin: 0;
+    font-size: var(--s1);
+  }
+  .meta {
+    margin: 2px 0 10px;
+    font: 400 var(--s-1) var(--f-mono);
+  }
+  dl {
+    margin: 0;
+  }
+  /* Label sits above its bar so the track can take most of the card width */
+  dl div {
+    padding-block: 4px 6px;
+  }
+  dt {
+    font-size: var(--s-1);
+    color: var(--muted);
+  }
+  dd {
+    margin: 2px 0 0;
+    font-size: var(--s-1);
+  }
+  .sum {
+    border-top: 1px solid var(--rule);
+    margin-top: 2px;
+  }
+  .sum dt {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 0 0 32px;
+    font-size: var(--s-1);
+  }
+</style>
