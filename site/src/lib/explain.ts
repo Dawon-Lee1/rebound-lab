@@ -13,6 +13,9 @@ export const signed = (x: number) => {
 /** Bar length as % of the shared scale, capped at 100. */
 export const barPct = (x: number, max: number) => (max > 0 ? Math.min(100, (Math.abs(x) / max) * 100) : 0);
 
+/** Share of the projection that comes from the player's own PA; the rest is k PA of league-average padding. */
+export const ownShare = (pa: number, k: number) => pa / (pa + k);
+
 type Team = { team: string | null; team_status: string };
 /** "CIN" / "FA" / "" — unknown team (API miss) is an empty string so it is not shown. */
 export const teamLabel = (p: Team) => (p.team_status === "fa" ? "FA" : (p.team ?? ""));

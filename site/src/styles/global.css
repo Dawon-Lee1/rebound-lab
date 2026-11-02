@@ -118,3 +118,28 @@ a:hover { text-decoration-thickness: 2px; }
     transition: none !important;
   }
 }
+
+/* Label + bar rows (player page, Methodology) */
+.bars {
+  margin: 0;
+}
+.bars > div { /* direct rows only: a nested <div popover> (Tip) must keep display:none */
+  display: grid;
+  grid-template-columns: 10em 1fr;
+  align-items: center;
+  min-height: 40px;
+}
+.bars dt {
+  font-weight: 600;
+}
+.bars dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 479px) {
+  .bars > div {
+    grid-template-columns: 1fr;
+    padding-block: 4px;
+  }
+}

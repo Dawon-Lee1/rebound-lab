@@ -1,0 +1,38 @@
+{
+  "w": 0.8,
+  "k": 300,
+  "survival": {
+    "200+": [
+      {
+        "period": "2024→2025",
+        "n_kept": 307,
+        "n_dropped": 58,
+        "mean_kept": 0.0,
+        "mean_dropped": 0.019
+      },
+      {
+        "period": "2025→2026",
+        "n_kept": 300,
+        "n_dropped": 48,
+        "mean_kept": 0.0,
+        "mean_dropped": 0.015
+      }
+    ],
+    "50+": [
+      {
+        "period": "2024→2025",
+        "n_kept": 378,
+        "n_dropped": 148,
+        "mean_kept": 0.005,
+        "mean_dropped": 0.034
+      },
+      {
+        "period": "2025→2026",
+        "n_kept": 379,
+        "n_dropped": 158,
+        "mean_kept": 0.004,
+        "mean_dropped": 0.033
+      }
+    ]
+  }
+}

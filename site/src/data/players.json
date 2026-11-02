@@ -1,6 +1,6 @@
 {
   "data_season": 2026,
-  "generated_at": "2026-11-02T01:46:42+00:00",
+  "generated_at": "2026-11-02T02:38:41+00:00",
   "method_version": "v1 (w=0.8, k=300)",
   "source": "Baseball Savant",
   "league_woba": 0.316,
@@ -14,6 +14,61 @@
   "rebound_tab_min_pa": 300,
   "risk_max_pa": 350,
   "risk_min_regression": 0.01,
+  "w": 0.8,
+  "k": 300,
+  "backtest": {
+    "train": "2024→2025",
+    "valid": "2025→2026",
+    "train_min_pa": 50,
+    "n_train": 378,
+    "valid_min_pa": 200,
+    "n_valid": 300,
+    "min_pa_next": 100,
+    "rmse": {
+      "projection": 0.0302,
+      "woba": 0.0382,
+      "xwoba": 0.0349,
+      "league": 0.0344
+    }
+  },
+  "survival": {
+    "min_pa": 200,
+    "rows": [
+      {
+        "period": "2024→2025",
+        "n_kept": 307,
+        "n_dropped": 58,
+        "mean_kept": 0.0,
+        "mean_dropped": 0.019
+      },
+      {
+        "period": "2025→2026",
+        "n_kept": 300,
+        "n_dropped": 48,
+        "mean_kept": 0.0,
+        "mean_dropped": 0.015
+      }
+    ]
+  },
+  "survival_all": {
+    "min_pa": 50,
+    "rows": [
+      {
+        "period": "2024→2025",
+        "n_kept": 378,
+        "n_dropped": 148,
+        "mean_kept": 0.005,
+        "mean_dropped": 0.034
+      },
+      {
+        "period": "2025→2026",
+        "n_kept": 379,
+        "n_dropped": 158,
+        "mean_kept": 0.004,
+        "mean_dropped": 0.033
+      }
+    ]
+  },
   "players": [
     {
       "player_id": 663647,

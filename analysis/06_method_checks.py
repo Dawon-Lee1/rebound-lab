@@ -8,6 +8,7 @@
 결과는 제안만 출력하고 model_params.json은 바꾸지 않는다.
 (c) 출전 위험: 올해 200타석+ 선수의 다음 해 탈락 비율을 타석·regression 구간별로 보고, 05의 playing_time_risk 기준 근거로 쓴다.
 """
+import json
 import sys
 
 import numpy as np
@@ -63,6 +64,7 @@ if __name__ == "__main__":
     print("=== (a) 생존 편향: 다음 해 100타석 미만이라 백테스트에서 빠진 선수 ===")
     print(f"rebound_score는 채택값 (w={w0}, k={k0}), 올해 전체 리그평균으로 계산\n")
     pairs = {}
+    survival = {f"{model.MIN_PA_SHOW}+": [], f"{model.MIN_PA_FROM}+": []}  # 방법론 페이지용
     for y0, y1 in ((2024, 2025), (2025, 2026)):
         m, a, b = pair_all(y0, y1)
         pairs[(y0, y1)] = m, a, b
@@ -71,6 +73,13 @@ if __name__ == "__main__":
         print(f"[{y0}→{y1}] 올해 {model.MIN_PA_FROM}타석+ {len(m)}명 중 탈락 {int((~m['kept']).sum())}명"
               f" (다음 해 기록 없음 {int(m['pa_to'].isna().sum())}명)")
         print(t.round(3).to_string(), "\n")
+        for sample, rows in survival.items():
+            rows.append({"period": f"{y0}→{y1}",
+                         "n_kept": int(t.loc[(sample, "남음"), "인원"]), "n_dropped": int(t.loc[(sample, "탈락"), "인원"]),
+                         "mean_kept": round(float(t.loc[(sample, "남음"), "평균"]), 3),
+                         "mean_dropped": round(float(t.loc[(sample, "탈락"), "평균"]), 3)})
+    model.METHOD_CHECKS.write_text(json.dumps({"w": w0, "k": k0, "survival": survival}, ensure_ascii=False, indent=2, allow_nan=False),
+                                   encoding="utf-8")
 
     print("=== (b) 회귀 목표 평균 비교 ===")
     print("(w, k)는 학습 2024→2025(다음 해 100타석+)에서 목표마다 다시 선택, 검증 2025→2026 RMSE(내년 타석 가중)\n")

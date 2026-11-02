@@ -1,11 +1,11 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Bar from "../../components/Bar.astro";
-import Tip from "../../components/Tip.astro";
+import Split from "../../components/Split.astro";
 import RiskIcon from "../../components/RiskIcon.astro";
 import { meta, players, scale, type Player } from "../../data/players";
 import { about } from "../../data/glossary";
-import { bare, explain, metaLine, signed, tipChange, tipLuck, tipReg } from "../../lib/explain";
+import { bare, explain, metaLine, signed } from "../../lib/explain";
 
 export function getStaticPaths() {
   return players.map((p) => ({ params: { id: String(p.player_id) }, props: { p } }));
@@ -84,32 +84,7 @@ const line = metaLine(p);
 
   <section aria-labelledby="h-split">
     <h2 id="h-split">Where the projected change comes from</h2>
-    <p class="sr-only">
-      Luck {signed(p.luck)} plus regression {signed(p.regression)} equals projected change {signed(p.rebound_score)}.
-    </p>
-    <dl class="bars split">
-      <div>
-        <dt>Luck</dt>
-        <dd>
-          <Bar value={p.luck} max={scale.change} tone="luck" size="lg" />
-          <Tip id="tip-luck" label={`Luck ${signed(p.luck)}`}>{tipLuck(p)}</Tip>
-        </dd>
-      </div>
-      <div>
-        <dt>+ Regression</dt>
-        <dd>
-          <Bar value={p.regression} max={scale.change} tone="reg" size="lg" />
-          <Tip id="tip-reg" label={`Regression ${signed(p.regression)}`}>{tipReg(p, lg)}</Tip>
-        </dd>
-      </div>
-      <div class="sum">
-        <dt>= Proj. change</dt>
-        <dd>
-          <Bar value={p.rebound_score} max={scale.change} tone="ink" size="lg" />
-          <Tip id="tip-chg" label={`Proj. change ${signed(p.rebound_score)}`}>{tipChange(p, season + 1)}</Tip>
-        </dd>
-      </div>
-    </dl>
+    <Split p={p} tips />
     <p class="muted note">{about.luck[1]} {about.regression[1]}</p>
   </section>
 
@@ -182,32 +157,8 @@ const line = metaLine(p);
   section {
     margin-bottom: 40px;
   }
-  .bars {
-    margin: 0;
-  }
-  .bars div {
-    display: grid;
-    grid-template-columns: 10em 1fr;
-    align-items: center;
-    min-height: 40px;
-  }
-  .bars dt {
-    font-weight: 600;
-  }
-  .bars dd {
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
   .contact {
     padding-top: 12px; /* room for the league-average label above the first bar */
-  }
-  .split {
-    width: fit-content; /* sum rule ends with the bars, not at the page edge */
-    max-width: 100%;
-  }
-  .split .sum {
-    border-top: 2px solid var(--ink);
   }
   .note {
     font-size: var(--s-1);
@@ -226,11 +177,5 @@ const line = metaLine(p);
   }
   .totals td {
     text-align: right;
-  }
-  @media (max-width: 479px) {
-    .bars div {
-      grid-template-columns: 1fr;
-      padding-block: 4px;
-    }
   }
 </style>

@@ -15,6 +15,7 @@ from pybaseball import statcast_batter_expected_stats
 
 MIN_PA_FROM, MIN_PA_TO, MIN_PA_SHOW = 50, 100, 200
 PARAMS = Path(__file__).resolve().parent / "results" / "model_params.json"
+METHOD_CHECKS = PARAMS.parent / "method_checks.json"  # 06이 쓰고 05가 읽는다(방법론 페이지 숫자)
 # 출전 위험: PA < RISK_MAX_PA 그리고 regression(3자리) >= RISK_MIN_REG. 근거는 06 (c), 결정기록 2026-11-01
 RISK_MAX_PA, RISK_MIN_REG = 350, 0.010
 COLS = ["player_id", "last_name, first_name", "pa", "woba", "est_woba", "ba", "est_ba", "slg", "est_slg"]

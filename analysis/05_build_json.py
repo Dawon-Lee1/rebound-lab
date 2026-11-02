@@ -95,6 +95,12 @@ if __name__ == "__main__":
     assert team_info(None, *t) == (None, "unknown")  # API 실패 또는 응답에 없음
     p = model.load_params()
     w, k = p["w"], p["k"]
+    if "backtest" not in p or not model.METHOD_CHECKS.exists():
+        raise SystemExit("04_projection.py와 06_method_checks.py를 먼저 실행하세요")
+    checks = json.loads(model.METHOD_CHECKS.read_text(encoding="utf-8"))
+    assert p["backtest"]["rmse"]["projection"] == p["valid_rmse_200"]
+    assert all(len(v) == 2 for v in checks["survival"].values())
+    assert (checks.get("w"), checks.get("k")) == (w, k), "method_checks.json이 다른 w, k로 계산됨: 06_method_checks.py를 다시 실행하세요"
     d = model.load(YEAR)
     lg = model.league_woba(d)
     d = build(d, w, k, lg)
@@ -137,6 +143,12 @@ if __name__ == "__main__":
         "rebound_tab_min_pa": REBOUND_TAB_MIN_PA,
         "risk_max_pa": model.RISK_MAX_PA,
         "risk_min_regression": model.RISK_MIN_REG,
+        # 방법론 페이지 숫자: 04(백테스트)와 06(생존 편향) 결과를 그대로 옮긴다
+        "w": w,
+        "k": k,
+        "backtest": p["backtest"],
+        "survival": {"min_pa": model.MIN_PA_SHOW, "rows": checks["survival"][f"{model.MIN_PA_SHOW}+"]},
+        "survival_all": {"min_pa": model.MIN_PA_FROM, "rows": checks["survival"][f"{model.MIN_PA_FROM}+"]},
         "players": players,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

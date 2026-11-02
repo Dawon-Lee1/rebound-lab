@@ -1,27 +1,379 @@
 ---
+// Every number on this page comes from players.json (copied there by analysis/05_build_json.py from 04 and 06 results).
 import Base from "../layouts/Base.astro";
-import { meta } from "../data/players";
+import Split from "../components/Split.astro";
+import { meta, players } from "../data/players";
+import { about } from "../data/glossary";
+import { bare, ownShare, signed } from "../lib/explain";
+
+const { w, k, backtest: bt, survival, survival_all: survivalAll } = meta;
+const season = meta.data_season;
+const lg = meta.league_woba;
+const firstSeason = Number(bt.train.slice(0, 4));
+const seasons = `${firstSeason}–${season}`;
+const pct = (x: number) => `${Math.round(x * 100)}%`;
+const rmse4 = (x: number) => x.toFixed(4).replace(/^0\./, "."); // RMSE differences only show at 4 decimals
+const coef = (x: number) => String(Number(x.toFixed(2))); // 0.8, 0.2 — avoids 0.19999…
+
+const fail = (msg: string) => {
+  throw new Error(`methodology: ${msg}. Update the page text before building.`);
+};
+const find = (id: number) => players.find((p) => p.player_id === id) ?? fail(`player ${id} missing from players.json`);
+const hayes = find(663647);
+const witt = find(677951);
+// The prose below describes these sign patterns; stop the build if the data no longer matches it.
+if (!(hayes.luck > 0 && hayes.regression > 0)) fail("Hayes example expects Luck + and Regression +");
+if (!(witt.luck > 0 && witt.regression < 0)) fail("Witt Jr. example expects Luck + and Regression −");
+
+const worked = (hayes.pa * (w * hayes.xwoba + (1 - w) * hayes.woba) + k * lg) / (hayes.pa + k);
+if (Math.abs(worked - hayes.proj_woba_2027) > 0.001) fail(`worked example ${worked} ≠ proj ${hayes.proj_woba_2027}`);
+
+const n = players.length;
+const nPlus = players.filter((p) => p.luck > 0).length;
+const nMinus = players.filter((p) => p.luck < 0).length;
+
+const rmse = [
+  ["Our projection", bt.rmse.projection],
+  [`${season - 1} wOBA, unchanged`, bt.rmse.woba],
+  [`${season - 1} xwOBA, unchanged`, bt.rmse.xwoba],
+  ["League average for everyone", bt.rmse.league],
+] as const;
+if (Math.min(...rmse.map((r) => r[1])) !== bt.rmse.projection) fail("text says the projection had the lowest error");
+// rmse labels name the validation "this year" (season − 1 for 2025→2026)
+if (bt.valid !== `${season - 1}→${season}`) fail("backtest validation period is not the last two seasons");
+
+for (const r of survival.rows) if (!(r.mean_dropped > r.mean_kept)) fail(`survival ${r.period}: dropped hitters no longer higher`);
+const [sa1, sa2] = survivalAll.rows;
+
+const faq: { q: string; a: string }[] = [
+  {
+    q: "What is xwOBA?",
+    a: `${about.xwoba[1]} Strikeouts and walks count as they happened. Baseball Savant publishes it for every hitter.`,
+  },
+  {
+    q: "Why is Luck different from Proj. change?",
+    a: "Luck is only the part of the projected change that comes from the gap between xwOBA and wOBA. Proj. change adds a second part, regression toward the league average. A hitter can show positive Luck and still have a small or negative Proj. change if his results were well above average.",
+  },
+  {
+    q: "Why do some stars have negative Proj. change?",
+    a: `Stars hit far above the league average (${bare(lg)} wOBA in ${season}), so regression pulls their projection down. Unless their xwOBA was clearly higher than their wOBA, that pull outweighs Luck. It does not mean they will be bad, only a little less extreme than last season.`,
+  },
+  {
+    q: "What does the playing-time flag mean?",
+    a: `It marks hitters with under ${meta.risk_max_pa} PA whose results were well below league average (Regression ${signed(meta.risk_min_regression)} or more). In past seasons, hitters like this lost regular playing time more often. It is a pattern from past data, not a prediction, and the cutoffs were chosen on the same seasons.`,
+  },
+  {
+    q: "How often is this updated?",
+    a: `The numbers use full ${season} season totals, which do not change in the offseason. This version was generated on ${meta.generated_at.slice(0, 10)}. Team and age details are refreshed when the site is rebuilt.`,
+  },
+];
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
 ---
 
-<Base title="Methodology">
+<Base
+  title="Methodology"
+  description={`How Rebound Lab projects ${season + 1} wOBA from xwOBA, how it was backtested, and where it falls short.`}
+>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(ld)} />
   <h1>Methodology</h1>
-  <p>
-    The {meta.data_season + 1} projection blends each hitter's expected wOBA (xwOBA) with actual wOBA, then pulls the
-    result toward the league average. Hitters with fewer plate appearances are pulled harder. Current settings:
-    {meta.method_version}.
+  <p class="lede">
+    How the {season + 1} projection works, how well it did on past seasons, and what it cannot tell you.
   </p>
-  <p>Rebound Score = projected wOBA − actual wOBA, split into two parts:</p>
-  <ul>
-    <li>
-      <strong>Luck</strong>: the share of the gap between expected and actual results (xwOBA − wOBA) that the projection
-      keeps. It is scaled down by the xwOBA weight and by sample size, so it is smaller than the raw gap.
-    </li>
-    <li><strong>Regression</strong>: the pull toward the league average ({meta.league_woba.toFixed(3)} wOBA).</li>
-  </ul>
-  <p>
-    The Buy-Low tab lists hitters with positive Luck, largest first. The Sell-High tab lists hitters with negative Luck,
-    most negative first. The Rebound tab ranks by the full Rebound Score and only includes hitters with
-    {meta.rebound_tab_min_pa}+ PA. Ranks use unrounded values, so two players showing the same three-decimal number can
-    hold different ranks.
-  </p>
+
+  <section aria-labelledby="m-question">
+    <h2 id="m-question">1. The question</h2>
+    <p>
+      wOBA measures what a hitter produced. xwOBA measures the quality of his contact. When the two disagree, what
+      happens the next season? Do results catch up to contact quality, and by how much?
+    </p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="t-question">
+      <table>
+        <caption id="t-question">{season} hitters with {meta.min_pa_show}+ PA</caption>
+        <tbody>
+          <tr><th scope="row">Hitters on the board</th><td class="num">{n}</td></tr>
+          <tr><th scope="row">Contact beat results (Luck +)</th><td class="num">{nPlus}</td></tr>
+          <tr><th scope="row">Results beat contact (Luck −)</th><td class="num">{nMinus}</td></tr>
+          <tr><th scope="row">Luck rounds to .000</th><td class="num">{n - nPlus - nMinus}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="m-data">
+    <h2 id="m-data">2. The data</h2>
+    <p>
+      Everything comes from Baseball Savant's expected statistics: season totals of PA, wOBA and xwOBA for every hitter.
+      No pitch-level or batted-ball data is stored or shown.
+    </p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="t-data">
+      <table>
+        <caption id="t-data">What goes in</caption>
+        <tbody>
+          <tr><th scope="row">Source</th><td>Baseball Savant expected stats, downloaded with pybaseball</td></tr>
+          <tr><th scope="row">Seasons</th><td>{seasons}</td></tr>
+          <tr><th scope="row">Board</th><td>{n} hitters with {meta.min_pa_show}+ PA in {season}</td></tr>
+          <tr>
+            <th scope="row">Backtest</th>
+            <td>
+              Settings picked on {bt.n_train} hitters with {bt.train_min_pa}+ PA ({bt.train}), tested on {bt.n_valid}
+              hitters with {bt.valid_min_pa}+ PA ({bt.valid}). Both count only hitters with {bt.min_pa_next}+ PA the next
+              season.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="m-proj">
+    <h2 id="m-proj">3. The projection</h2>
+    <p>Each hitter's {season + 1} wOBA is projected as:</p>
+    <div class="formula frac-line" aria-hidden="true">
+      <span>proj =</span>
+      <span class="frac">
+        <span class="numer">PA × ({coef(w)} × xwOBA + {coef(1 - w)} × wOBA) + {k} × league avg</span>
+        <span class="denom">PA + {k}</span>
+      </span>
+    </div>
+    <p class="sr-only">
+      proj equals PA times ({coef(w)} times xwOBA plus {coef(1 - w)} times wOBA), plus {k} times the league average, all
+      divided by PA plus {k}.
+    </p>
+    <p>
+      The first part leans on xwOBA ({pct(w)}) over wOBA ({pct(1 - w)}), because contact quality predicts next season
+      better than results do. The second part is padding: before projecting, we add {k} plate appearances of exactly
+      league-average hitting ({bare(lg)} wOBA) to every hitter's line. A hitter with few PA is mostly padding, so his
+      projection stays close to average. A full-time hitter is mostly his own numbers.
+    </p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="t-pad">
+      <table>
+        <caption id="t-pad">How much of the projection is the hitter's own data</caption>
+        <thead>
+          <tr><th scope="col">Hitter</th><th scope="col">PA</th><th scope="col">Own data</th><th scope="col">Padding ({k} PA)</th></tr>
+        </thead>
+        <tbody>
+          {
+            [hayes, witt].map((p) => (
+              <tr>
+                <th scope="row"><a href={`/player/${p.player_id}`}>{p.name}</a></th>
+                <td class="num">{p.pa}</td>
+                <td class="num">{pct(ownShare(p.pa, k))}</td>
+                <td class="num">{pct(1 - ownShare(p.pa, k))}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Worked example, {hayes.name}: ({hayes.pa} × ({coef(w)} × {bare(hayes.xwoba)} + {coef(1 - w)} × {bare(hayes.woba)}) + {k}
+      × {bare(lg)}) / ({hayes.pa} + {k}) = <strong class="num">{bare(hayes.proj_woba_2027)}</strong>.
+    </p>
+  </section>
+
+  <section aria-labelledby="m-backtest">
+    <h2 id="m-backtest">4. Backtest</h2>
+    <p>
+      We picked the two settings (xwOBA weight {coef(w)}, padding {k} PA) on {bt.train}, projecting the second season from
+      the first and comparing with what actually happened. Then we tested them on {bt.valid}. One caveat: we also used {bt.valid} to choose between two candidate settings,
+      so it is not a fully untouched test.
+      The error measure is RMSE of next-season wOBA, weighted by next-season PA. Lower is better.
+    </p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="t-rmse">
+      <table>
+        <caption id="t-rmse">
+          Next-season wOBA error (RMSE), {bt.valid}. Hitters with {bt.valid_min_pa}+ PA who had {bt.min_pa_next}+ PA
+          the next season, n = {bt.n_valid}.
+        </caption>
+        <thead><tr><th scope="col">Method</th><th scope="col">RMSE</th></tr></thead>
+        <tbody>
+          {rmse.map(([label, v]) => <tr><th scope="row">{label}</th><td class="num">{rmse4(v)}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Our projection's error was about {pct(1 - bt.rmse.projection / bt.rmse.league)} lower than giving every hitter the
+      league average. It had the lowest error of the four, for hitters with {bt.min_pa_next}+ PA the next season. Hitters who
+      lost their jobs are not in this test; see Limitations.
+    </p>
+  </section>
+
+  <section aria-labelledby="m-split">
+    <h2 id="m-split">5. Luck vs Regression</h2>
+    <p>Proj. change (projection minus {season} wOBA) splits exactly into two parts:</p>
+    <p class="formula">Luck = PA × {coef(w)} × (xwOBA − wOBA) / (PA + {k})</p>
+    <p class="formula">Regression = {k} × (league avg − wOBA) / (PA + {k})</p>
+    <p>
+      Luck is the share of the xwOBA–wOBA gap the projection keeps. Regression is the pull of the padding toward the
+      league average. Both bars below use the same scale as the player pages.
+    </p>
+    <h3>{hayes.name}: both parts push up</h3>
+    <p>
+      His contact earned {bare(hayes.xwoba)} but he produced {bare(hayes.woba)}, so Luck is {signed(hayes.luck)}. With only
+      {hayes.pa} PA at a wOBA far below average, regression adds {signed(hayes.regression)} more.
+    </p>
+    <Split p={hayes} />
+    <h3>{witt.name}: the parts disagree</h3>
+    <p>
+      His contact earned {bare(witt.xwoba)}, but he produced a {bare(witt.woba)} wOBA, so Luck is {signed(witt.luck)}. But
+      {bare(witt.woba)} is well above the league average, so regression takes {signed(witt.regression)} back. The
+      Proj. change is {signed(witt.rebound_score)}.
+    </p>
+    <Split p={witt} />
+  </section>
+
+  <section aria-labelledby="m-limits">
+    <h2 id="m-limits">6. Limitations</h2>
+    <h3>Survival bias</h3>
+    <p>
+      The backtest can only grade hitters who reached {bt.min_pa_next} PA the next season. Hitters who fell short had much
+      larger projected rebounds, so the test leaves out exactly the players the model was most optimistic about.
+    </p>
+    <div class="scroll" tabindex="0" role="region" aria-labelledby="t-surv">
+      <table>
+        <caption id="t-surv">
+          Hitters with {survival.min_pa}+ PA, by whether they reached {bt.min_pa_next} PA the next season. Average Proj. change at the time.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Seasons</th>
+            <th scope="col">Stayed</th>
+            <th scope="col">Avg. change (stayed)</th>
+            <th scope="col">Dropped out</th>
+            <th scope="col">Avg. change (dropped)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            survival.rows.map((r) => (
+              <tr>
+                <th scope="row">{r.period}</th>
+                <td class="num">{r.n_kept}</td>
+                <td class="num">{signed(r.mean_kept)}</td>
+                <td class="num">{r.n_dropped}</td>
+                <td class="num">{signed(r.mean_dropped)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="muted foot">
+      Counting every hitter with {survivalAll.min_pa}+ PA, {sa1.n_dropped} ({sa1.period}) and {sa2.n_dropped} ({sa2.period})
+      dropped out. Their average Proj. change was {signed(sa1.mean_dropped)} and {signed(sa2.mean_dropped)}, against
+      {signed(sa1.mean_kept)} and {signed(sa2.mean_kept)} for those who stayed.
+    </p>
+    <h3>The playing-time flag is in-sample</h3>
+    <p>
+      The cutoffs (under {meta.risk_max_pa} PA, Regression {signed(meta.risk_min_regression)} or more) were chosen on the
+      same two seasons they describe. That is why the site states the pattern without a rate.
+    </p>
+    <h3>No aging, one season of data</h3>
+    <p>
+      The projection does not adjust for age, and it uses only the latest season. A hitter's earlier seasons, injuries and
+      role changes are not part of it.
+    </p>
+    <h3>Not fantasy categories</h3>
+    <p>
+      wOBA is one number for overall hitting. We do not translate it into AVG, HR, R, RBI or SB, so use it to find
+      hitters worth a closer look, not as a category projection.
+    </p>
+  </section>
+
+  <section aria-labelledby="m-faq">
+    <h2 id="m-faq">7. FAQ</h2>
+    {
+      faq.map((f) => (
+        <>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </>
+      ))
+    }
+  </section>
+
+  <section aria-labelledby="m-sources">
+    <h2 id="m-sources">8. Sources</h2>
+    <ul>
+      <li><a href="https://baseballsavant.mlb.com/leaderboard/expected_statistics">Baseball Savant expected statistics</a></li>
+      <li><a href="https://github.com/jldbc/pybaseball">pybaseball (Python package used to download the data)</a></li>
+      <li><a href="https://github.com/Dawon-Lee1/rebound-lab">Rebound Lab source code on GitHub</a></li>
+    </ul>
+  </section>
 </Base>
+
+<style>
+  .lede {
+    font-size: var(--s1);
+    margin-bottom: 40px;
+  }
+  section {
+    margin-bottom: 56px;
+    max-width: 760px;
+  }
+  h3 {
+    margin-top: 28px;
+  }
+  .formula {
+    font-family: var(--f-mono);
+    background: var(--surface);
+    padding: 10px 14px;
+    overflow-wrap: anywhere;
+  }
+  .frac-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 0 0 1em;
+  }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 0;
+  }
+  .numer {
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--ink); /* fraction bar */
+  }
+  .denom {
+    padding-top: 4px;
+  }
+  .scroll {
+    overflow-x: auto;
+    margin: 0 0 1em;
+  }
+  table {
+    border-collapse: collapse;
+    min-width: min(100%, 360px);
+  }
+  caption {
+    text-align: left;
+    font-size: var(--s-1);
+    color: var(--muted);
+    padding-bottom: 6px;
+    max-width: 68ch;
+  }
+  th,
+  td {
+    padding: 6px 16px 6px 0;
+    border-bottom: 1px solid var(--hair);
+    text-align: left;
+    font-weight: 400;
+  }
+  thead th {
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+  }
+  td.num {
+    text-align: right;
+  }
+  .foot {
+    font-size: var(--s-1);
+  }
+</style>

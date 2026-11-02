@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { bare, barPct, explain, metaLine, signed, tipChange, tipLuck, tipReg } from "./explain.ts";
+import { bare, barPct, explain, metaLine, ownShare, signed, tipChange, tipLuck, tipReg } from "./explain.ts";
 
 test("signed", () => {
   assert.equal(signed(0.034), "+.034");
@@ -73,4 +73,9 @@ test("tips", () => {
   assert.match(tipLuck({ ...p, luck: -0.01 }), /results beat contact quality, so −\.010/);
   assert.equal(tipReg(p, 0.316), "242 PA at a .191 wOBA pulls the projection +.069 toward the league average (.316). Fewer PA means a bigger pull.");
   assert.equal(tipChange(p, 2027), "Luck +.034 plus regression +.069 = +.103, for a projected 2027 wOBA of .294.");
+});
+
+test("ownShare", () => {
+  assert.equal(ownShare(300, 300), 0.5);
+  assert.equal(ownShare(0, 300), 0);
 });

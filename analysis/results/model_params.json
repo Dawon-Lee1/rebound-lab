@@ -14,5 +14,20 @@
       500
     ]
   },
-  "gain_200": 0.0122
+  "gain_200": 0.0122,
+  "backtest": {
+    "train": "2024→2025",
+    "valid": "2025→2026",
+    "train_min_pa": 50,
+    "n_train": 378,
+    "valid_min_pa": 200,
+    "n_valid": 300,
+    "min_pa_next": 100,
+    "rmse": {
+      "projection": 0.0302,
+      "woba": 0.0382,
+      "xwoba": 0.0349,
+      "league": 0.0344
+    }
+  }
 }

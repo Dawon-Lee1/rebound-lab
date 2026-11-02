@@ -1,0 +1,51 @@
+---
+// Luck + Regression = Proj. change, on the shared change scale. Player page (with tips) and Methodology (without).
+import Bar from "./Bar.astro";
+import Tip from "./Tip.astro";
+import { meta, scale, type Player } from "../data/players";
+import { signed, tipChange, tipLuck, tipReg } from "../lib/explain";
+
+interface Props {
+  p: Player;
+  tips?: boolean;
+  idPrefix?: string; // keeps popover ids unique when a page shows several splits
+}
+const { p, tips = false, idPrefix = "tip" } = Astro.props;
+---
+
+<p class="sr-only">
+  Luck {signed(p.luck)} plus regression {signed(p.regression)} equals projected change {signed(p.rebound_score)}.
+</p>
+<dl class="bars split">
+  <div>
+    <dt>Luck</dt>
+    <dd>
+      <Bar value={p.luck} max={scale.change} tone="luck" size="lg" />
+      {tips && <Tip id={`${idPrefix}-luck`} label={`Luck ${signed(p.luck)}`}>{tipLuck(p)}</Tip>}
+    </dd>
+  </div>
+  <div>
+    <dt>+ Regression</dt>
+    <dd>
+      <Bar value={p.regression} max={scale.change} tone="reg" size="lg" />
+      {tips && <Tip id={`${idPrefix}-reg`} label={`Regression ${signed(p.regression)}`}>{tipReg(p, meta.league_woba)}</Tip>}
+    </dd>
+  </div>
+  <div class="sum">
+    <dt>= Proj. change</dt>
+    <dd>
+      <Bar value={p.rebound_score} max={scale.change} tone="ink" size="lg" />
+      {tips && <Tip id={`${idPrefix}-chg`} label={`Proj. change ${signed(p.rebound_score)}`}>{tipChange(p, meta.data_season + 1)}</Tip>}
+    </dd>
+  </div>
+</dl>
+
+<style>
+  .split {
+    width: fit-content; /* sum rule ends with the bars, not at the page edge */
+    max-width: 100%;
+  }
+  .split .sum {
+    border-top: 2px solid var(--ink);
+  }
+</style>

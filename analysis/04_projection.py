@@ -92,9 +92,22 @@ if __name__ == "__main__":
     gain = 1 - new / old
     w, k = (w1, k1) if gain >= MIN_GAIN else (w0, k0)
     print(f"RMSE 개선 {gain:.1%} → {'새 값 채택' if gain >= MIN_GAIN else '기존 값 유지'}: w = {w}, k = {k}")
+    chosen = new if gain >= MIN_GAIN else old
+    base = baselines(valid200, lg_valid)
     model.save_params(w=w, k=k, train="2024→2025", valid="2025→2026",
-                      valid_rmse_200=round(new if gain >= MIN_GAIN else old, 4),
-                      candidates={"50+": [w0, k0], "200+": [w1, k1]}, gain_200=round(gain, 4))
+                      valid_rmse_200=round(chosen, 4),
+                      candidates={"50+": [w0, k0], "200+": [w1, k1]}, gain_200=round(gain, 4),
+                      # 방법론 페이지 백테스트 표: 사이트 표시 기준과 같은 200타석+ 표본
+                      backtest={"train": "2024→2025", "valid": "2025→2026",
+                                # 학습 표본은 채택된 후보를 고른 표본, 검증은 사이트 표시 기준(200타석+)
+                                "train_min_pa": model.MIN_PA_SHOW if gain >= MIN_GAIN else model.MIN_PA_FROM,
+                                "n_train": len(train200) if gain >= MIN_GAIN else len(train),
+                                "valid_min_pa": model.MIN_PA_SHOW, "n_valid": len(valid200),
+                                "min_pa_next": model.MIN_PA_TO,
+                                "rmse": {"projection": round(chosen, 4),
+                                         "woba": round(base["올해 wOBA 그대로"], 4),
+                                         "xwoba": round(base["올해 xwOBA 그대로"], 4),
+                                         "league": round(base["리그 평균"], 4)}})
 
     d = model.load(2026)
     lg = model.league_woba(d)
